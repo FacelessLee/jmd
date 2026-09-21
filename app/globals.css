@@ -1,0 +1,116 @@
+@import "tailwindcss";
+
+:root {
+  --bg-primary: #FBF9F5;
+  --bg-surface: rgba(255, 255, 255, 0.85);
+  --bg-surface-elevated: #FFFFFF;
+  --bg-dark: #0D0F12;
+  --bg-dark-surface: #16181D;
+
+  /* Intention Coral (Warmth & Vibrancy) */
+  --coral-primary: #FF5A5F;
+  --coral-gradient-start: #FF5A5F;
+  --coral-gradient-end: #FF7E40;
+
+  /* Deep Sage (Insight & Emotional Resilience) */
+  --sage-primary: #2A4B43;
+  --sage-light: #386358;
+  --sage-muted: #E8EFEA;
+
+  /* Typography Neutrals */
+  --text-primary: #121316;
+  --text-muted: #5B616E;
+  --text-light: #8E95A5;
+
+  /* Glassmorphism & Borders */
+  --border-subtle: rgba(18, 19, 22, 0.08);
+  --border-glass: rgba(255, 255, 255, 0.4);
+
+  /* Mouse Tracker Defaults */
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+@theme {
+  --color-canvas: var(--bg-primary);
+  --color-obsidian: var(--bg-dark);
+  --color-obsidian-surface: var(--bg-dark-surface);
+  --color-coral: var(--coral-primary);
+  --color-sage: var(--sage-primary);
+  --color-sage-light: var(--sage-light);
+  --color-sage-muted: var(--sage-muted);
+  --color-neutral-heading: var(--text-primary);
+  --color-neutral-body: var(--text-muted);
+  --color-neutral-light: var(--text-light);
+}
+
+html {
+  scroll-behavior: initial;
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+  font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+body {
+  overflow-x: hidden;
+  min-height: 100vh;
+}
+
+/* Glassmorphic Surfaces */
+.glass-panel {
+  background: var(--bg-surface);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--border-subtle);
+}
+
+.glass-panel-dark {
+  background: rgba(22, 24, 29, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* LazyInterface Mouse Tracking Spotlight Border */
+.spotlight-card {
+  position: relative;
+  background-clip: padding-box;
+}
+
+.spotlight-card::before {
+  content: "";
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: radial-gradient(
+    400px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 90, 95, 0.4),
+    rgba(42, 75, 67, 0.15),
+    transparent 80%
+  );
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.spotlight-card:hover::before {
+  opacity: 1;
+}
+
+/* Subtle Film Grain Noise Texture */
+.bg-noise {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.02'/%3E%3C/svg%3E");
+}
+
+/* Custom Selection */
+::selection {
+  background-color: #FF5A5F;
+  color: #FFFFFF;
+}
