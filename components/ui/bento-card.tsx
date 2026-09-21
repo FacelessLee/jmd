@@ -45,7 +45,7 @@ export function BentoCard({
     if (canTilt) {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      const maxTilt = 5;
+      const maxTilt = 4;
       const rotateX = -((y - centerY) / centerY) * maxTilt;
       const rotateY = ((x - centerX) / centerX) * maxTilt;
       setTilt({ rotateX, rotateY });
@@ -82,26 +82,13 @@ export function BentoCard({
         transformStyle: "preserve-3d",
         perspective: 1000,
       }}
-      className={`group relative rounded-3xl bg-[#1A141D] border border-[#2E2433] shadow-[0_12px_36px_rgba(0,0,0,0.35)] overflow-hidden transition-all duration-300 hover:border-[#FF5A7A]/35 hover:shadow-[0_20px_45px_rgba(255,90,122,0.08)] ${className}`}
+      className={`group relative rounded-3xl bg-white border border-[#E7E2DA] shadow-md overflow-hidden transition-all duration-300 hover:border-[#FF5A60]/40 hover:shadow-2xl ${className}`}
     >
       {/* Spotlight Radial Glow Shader */}
       <div
         className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
         style={{
-          background: `radial-gradient(420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 90, 122, 0.12), rgba(255, 179, 107, 0.05) 50%, transparent 80%)`,
-        }}
-      />
-
-      {/* Border Highlight Beam */}
-      <div
-        className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
-        style={{
-          border: "1.5px solid transparent",
-          backgroundImage: `radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 90, 122, 0.45), transparent 70%)`,
-          WebkitMask:
-            "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
-          WebkitMaskComposite: "xor",
-          maskComposite: "exclude",
+          background: `radial-gradient(420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 90, 96, 0.08), rgba(255, 198, 41, 0.04) 50%, transparent 80%)`,
         }}
       />
 
@@ -110,18 +97,18 @@ export function BentoCard({
         {(badge || title || subtitle) && (
           <div className="mb-6">
             {badge && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#241C29] border border-[#2E2433] text-[#FFB36B] mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#FF5A7A]" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#FAF8F5] border border-[#E7E2DA] text-[#FF5A60] mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF5A60]" />
                 {badge}
               </span>
             )}
             {title && (
-              <h3 className="text-xl sm:text-2xl font-bold text-[#F5EFE8] tracking-tight mb-2">
+              <h3 className="text-xl sm:text-2xl font-black text-[#1C1B1B] tracking-tight mb-2">
                 {title}
               </h3>
             )}
             {subtitle && (
-              <p className="text-sm text-[#B8AEB6] leading-relaxed">
+              <p className="text-sm text-[#4F4633] leading-relaxed">
                 {subtitle}
               </p>
             )}

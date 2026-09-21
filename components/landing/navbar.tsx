@@ -2,8 +2,8 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, useScroll, useSpring } from "framer-motion";
+import { Sparkles, Menu, X, ArrowRight, Flame } from "lucide-react";
 import { MagneticButton } from "@/components/ui/magnetic-button";
-import { Sparkles, Menu, X, ArrowRight } from "lucide-react";
 
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -37,91 +37,126 @@ export function Navbar() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-[#100C12]/85 backdrop-blur-xl border-b border-[#2E2433] shadow-lg shadow-black/40 py-3"
-          : "bg-transparent py-5"
+          ? "bg-[#FCF9F8]/90 backdrop-blur-xl border-b border-[#E7E2DA]/80 shadow-sm py-3"
+          : "bg-transparent py-4 sm:py-5"
       }`}
     >
       {/* Scroll Progress Bar at very top */}
       <motion.div
         style={{ scaleX }}
-        className="absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r from-[#FF5A7A] via-[#FFB36B] to-[#FF5A7A] origin-left z-50"
+        className="absolute top-0 left-0 right-0 h-[3px] flame-gradient origin-left z-50"
       />
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 flex items-center justify-between">
-        {/* Brand Logo with Pulsing Desire Presence Indicator */}
+      <div className="w-full px-8 sm:px-12 lg:px-16 2xl:px-24 flex items-center justify-between">
+
+        {/* Brand Logo with Official Flame Emblem SVG */}
         <a
           href="#"
-          className="flex items-center gap-2.5 group cursor-pointer focus:outline-none"
+          className="flex items-center gap-2 group cursor-pointer focus:outline-none"
         >
-          <div className="relative flex items-center justify-center w-8 h-8 rounded-full bg-[#1A141D] border border-[#2E2433] text-[#F5EFE8]">
-            <span className="font-extrabold text-xs tracking-tighter text-[#FF5A7A]">JM</span>
-            <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#FF5A7A] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-[#FF5A7A]"></span>
-            </span>
-          </div>
-
-          <div className="flex flex-col">
-            <span className="font-extrabold text-base sm:text-lg text-[#F5EFE8] tracking-tight group-hover:text-[#FF5A7A] transition-colors">
+          <svg viewBox="0 0 240 60" className="h-9 sm:h-10 w-auto" fill="none">
+            <defs>
+              <linearGradient id="nav_jm_grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor="#FF5A60" />
+                <stop offset="50%" stopColor="#FFA41C" />
+                <stop offset="100%" stopColor="#FFC629" />
+              </linearGradient>
+            </defs>
+            <g transform="translate(6, 6)">
+              <circle cx="22" cy="22" r="21" fill="url(#nav_jm_grad)" />
+              <path
+                d="M22 13 C24 16, 28 18, 28 22 C28 25.5 25.5 28 22 28 C18.5 28 16 25.5 16 22 C16 19, 18 16.5, 20 14 C20 18, 22 19, 23 21 C23.5 20, 23.5 18.5, 22 13 Z"
+                fill="#ffffff"
+                opacity="0.95"
+              />
+              <circle cx="29" cy="14" r="3.5" fill="#ffffff" />
+            </g>
+            <text
+              x="62"
+              y="29"
+              fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+              fontWeight="900"
+              fontSize="20"
+              letterSpacing="-0.5px"
+              fill="#1C1B1B"
+            >
               Just Mature Mind
-            </span>
-            <span className="text-[10px] uppercase font-bold tracking-widest text-[#B8AEB6] -mt-1">
-              Desire with Standards
-            </span>
-          </div>
+            </text>
+            <text
+              x="62"
+              y="44"
+              fontFamily="'Plus Jakarta Sans', system-ui, sans-serif"
+              fontWeight="700"
+              fontSize="9.5"
+              letterSpacing="1.5px"
+              fill="#68645E"
+            >
+              CONSCIOUS DATING &amp; EQ
+            </text>
+          </svg>
         </a>
 
         {/* Center Nav Links */}
-        <nav className="hidden md:flex items-center gap-7 text-sm font-medium text-[#B8AEB6]">
+        <nav className="hidden lg:flex items-center gap-7 text-sm font-semibold text-[#4F4633]">
           <button
-            onClick={() => scrollTo("dilemma-deck")}
-            className="hover:text-[#F5EFE8] transition-colors cursor-pointer py-1"
+            onClick={() => scrollTo("sparks-showcase")}
+            className="hover:text-[#FF5A60] transition-colors cursor-pointer py-1"
+          >
+            The Spectrum
+          </button>
+          <button
+            onClick={() => scrollTo("matchmaking-protocol")}
+            className="hover:text-[#FF5A60] transition-colors cursor-pointer py-1 flex items-center gap-1.5"
+          >
+            <span>Matchmaking</span>
+            <span className="px-2 py-0.5 text-[10px] font-black uppercase rounded-full bg-[#E8F5E9] text-[#2D6A4F]">
+              Curated
+            </span>
+          </button>
+          <button
+            onClick={() => scrollTo("active-cohorts")}
+            className="hover:text-[#FF5A60] transition-colors cursor-pointer py-1"
+          >
+            Active Cohort
+          </button>
+          <button
+            onClick={() => scrollTo("dilemma-simulator")}
+            className="hover:text-[#FF5A60] transition-colors cursor-pointer py-1"
           >
             Dilemma Deck
           </button>
           <button
-            onClick={() => scrollTo("core-pillars")}
-            className="hover:text-[#F5EFE8] transition-colors cursor-pointer py-1"
-          >
-            Foundations
-          </button>
-          <button
             onClick={() => scrollTo("maturity-metric")}
-            className="hover:text-[#F5EFE8] transition-colors cursor-pointer py-1"
+            className="hover:text-[#FF5A60] transition-colors cursor-pointer py-1"
           >
             Maturity Metric
           </button>
           <button
-            onClick={() => scrollTo("social-proof")}
-            className="hover:text-[#F5EFE8] transition-colors cursor-pointer py-1"
+            onClick={() => scrollTo("the-foundations")}
+            className="hover:text-[#FF5A60] transition-colors cursor-pointer py-1"
           >
-            Real Outcomes
-          </button>
-          <button
-            onClick={() => scrollTo("contrast-carousel")}
-            className="hover:text-[#F5EFE8] transition-colors cursor-pointer py-1"
-          >
-            Red Flag vs Growth
+            Foundations
           </button>
         </nav>
 
-        {/* Right Magnetic Pill CTA */}
-        <div className="hidden md:flex items-center gap-4">
+        {/* Right CTAs */}
+        <div className="hidden sm:flex items-center gap-3">
           <MagneticButton
-            variant="primary"
-            strength={6}
-            onClick={() => scrollTo("join-circle")}
-            className="px-5 py-2 text-xs uppercase tracking-wider font-bold"
+            onClick={() => scrollTo("join-cohort")}
+            variant="flame"
+            strength={7}
+            textStrength={3}
+            className="px-6 py-2.5 text-[13px]"
           >
-            <Sparkles className="w-3.5 h-3.5" />
-            Join the Circle
+            <Flame className="w-4 h-4" />
+            <span>Find Your Spark</span>
           </MagneticButton>
         </div>
 
         {/* Mobile Menu Toggle */}
         <button
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-          className="md:hidden p-2 rounded-xl text-[#F5EFE8] hover:bg-white/5 border border-transparent hover:border-[#2E2433]"
+          className="lg:hidden p-2 rounded-xl text-[#1C1B1B] hover:bg-black/5"
           aria-label="Toggle Navigation Menu"
         >
           {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -133,50 +168,59 @@ export function Navbar() {
         <motion.div
           initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden bg-[#100C12]/95 backdrop-blur-2xl border-b border-[#2E2433] px-6 py-6 space-y-4 shadow-2xl"
+          className="lg:hidden bg-[#FCF9F8]/98 backdrop-blur-2xl border-b border-[#E7E2DA] px-6 py-6 space-y-4 shadow-xl"
         >
           <button
-            onClick={() => scrollTo("dilemma-deck")}
-            className="block w-full text-left font-semibold text-[#F5EFE8] py-2 border-b border-[#2E2433]/50"
+            onClick={() => scrollTo("sparks-showcase")}
+            className="block w-full text-left font-bold text-[#1C1B1B] py-2 border-b border-[#E7E2DA]/60"
+          >
+            The Spectrum
+          </button>
+          <button
+            onClick={() => scrollTo("matchmaking-protocol")}
+            className="block w-full text-left font-bold text-[#1C1B1B] py-2 border-b border-[#E7E2DA]/60 flex items-center justify-between"
+          >
+            <span>Matchmaking Architecture</span>
+            <span className="px-2 py-0.5 text-[10px] font-black uppercase rounded-full bg-[#E8F5E9] text-[#2D6A4F]">
+              Curated
+            </span>
+          </button>
+          <button
+            onClick={() => scrollTo("active-cohorts")}
+            className="block w-full text-left font-bold text-[#1C1B1B] py-2 border-b border-[#E7E2DA]/60"
+          >
+            Active Cohorts
+          </button>
+          <button
+            onClick={() => scrollTo("dilemma-simulator")}
+            className="block w-full text-left font-bold text-[#1C1B1B] py-2 border-b border-[#E7E2DA]/60"
           >
             Dilemma Deck
           </button>
           <button
-            onClick={() => scrollTo("core-pillars")}
-            className="block w-full text-left font-semibold text-[#F5EFE8] py-2 border-b border-[#2E2433]/50"
-          >
-            Foundations
-          </button>
-          <button
             onClick={() => scrollTo("maturity-metric")}
-            className="block w-full text-left font-semibold text-[#F5EFE8] py-2 border-b border-[#2E2433]/50"
+            className="block w-full text-left font-bold text-[#1C1B1B] py-2 border-b border-[#E7E2DA]/60"
           >
             Maturity Metric
           </button>
           <button
-            onClick={() => scrollTo("social-proof")}
-            className="block w-full text-left font-semibold text-[#F5EFE8] py-2 border-b border-[#2E2433]/50"
+            onClick={() => scrollTo("the-foundations")}
+            className="block w-full text-left font-bold text-[#1C1B1B] py-2"
           >
-            Real Outcomes
-          </button>
-          <button
-            onClick={() => scrollTo("contrast-carousel")}
-            className="block w-full text-left font-semibold text-[#F5EFE8] py-2"
-          >
-            Red Flag vs Growth
+            The Foundations
           </button>
           <div className="pt-2">
-            <MagneticButton
-              variant="primary"
-              onClick={() => scrollTo("join-circle")}
-              className="w-full py-3.5 text-xs uppercase tracking-wider font-bold"
+            <button
+              onClick={() => scrollTo("join-cohort")}
+              className="w-full py-3.5 rounded-full text-sm font-bold text-white flame-gradient shadow-md flex items-center justify-center gap-2 cursor-pointer"
             >
-              Join the Circle
+              <span>Find Your Spark</span>
               <ArrowRight className="w-4 h-4" />
-            </MagneticButton>
+            </button>
           </div>
         </motion.div>
       )}
     </header>
   );
 }
+

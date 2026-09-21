@@ -2,7 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion } from "framer-motion";
-import { ArrowLeft, ArrowRight, ShieldAlert, CheckCircle2 } from "lucide-react";
+import { ArrowLeft, ArrowRight, ShieldAlert, CheckCircle2, Split } from "lucide-react";
 
 interface ContrastItem {
   id: number;
@@ -86,10 +86,10 @@ export function ComparisonCarousel() {
   return (
     <section
       id="contrast-carousel"
-      className="py-20 md:py-32 bg-[#100C12] border-t border-[#2E2433] overflow-hidden relative"
+      className="py-24 md:py-32 bg-[#FCF9F8] border-b border-[#E7E2DA] overflow-hidden relative"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
-        {/* Header with Navigation Controls and Scroll Reveal */}
+      <div className="w-full px-8 sm:px-12 md:px-16 lg:px-20 2xl:px-28 relative z-10">
+        {/* Header with Navigation Controls */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -97,89 +97,88 @@ export function ComparisonCarousel() {
           transition={{ duration: 0.5 }}
           className="flex flex-col md:flex-row md:items-end justify-between mb-12 gap-6"
         >
-          <div className="space-y-3 max-w-2xl">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#FF5A7A]">
-              Direct Contrast
-            </span>
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#F5EFE8] tracking-tight">
+          <div className="space-y-3 max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFEFEF] text-[#BA1A1A] text-xs font-bold uppercase tracking-wider">
+              <Split className="w-3.5 h-3.5" />
+              <span>Direct Contrast</span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-black text-[#1C1B1B] tracking-tight">
               Swipe Culture vs. Mature Mind
             </h2>
-            <p className="text-base text-[#B8AEB6]">
-              Examine how unconscious habits poison connections, and how conscious relational practices create enduring safety.
+
+            <p className="text-base text-[#4F4633] leading-relaxed">
+              Examine how unconscious dating habits poison connections, and how conscious relational practices build magnetic security.
             </p>
           </div>
 
-          {/* Carousel Navigation Buttons */}
-          <div className="flex items-center gap-3">
+          {/* Carousel Arrows */}
+          <div className="flex items-center gap-3 shrink-0">
             <button
               onClick={scrollLeft}
-              aria-label="Previous contrast card"
-              className="w-11 h-11 rounded-full bg-[#1A141D] border border-[#2E2433] flex items-center justify-center text-[#F5EFE8] hover:border-[#FF5A7A]/50 hover:bg-[#241C29] transition-all cursor-pointer"
+              className="w-11 h-11 rounded-full bg-white border border-[#E7E2DA] flex items-center justify-center text-[#1C1B1B] hover:border-[#FF5A60] hover:text-[#FF5A60] transition-colors shadow-sm cursor-pointer"
+              aria-label="Scroll left"
             >
               <ArrowLeft className="w-5 h-5" />
             </button>
             <button
               onClick={scrollRight}
-              aria-label="Next contrast card"
-              className="w-11 h-11 rounded-full bg-[#1A141D] border border-[#2E2433] flex items-center justify-center text-[#F5EFE8] hover:border-[#FF5A7A]/50 hover:bg-[#241C29] transition-all cursor-pointer"
+              className="w-11 h-11 rounded-full bg-white border border-[#E7E2DA] flex items-center justify-center text-[#1C1B1B] hover:border-[#FF5A60] hover:text-[#FF5A60] transition-colors shadow-sm cursor-pointer"
+              aria-label="Scroll right"
             >
               <ArrowRight className="w-5 h-5" />
             </button>
           </div>
         </motion.div>
 
-        {/* Draggable & Scrollable Carousel */}
+        {/* Scrollable Track */}
         <div
           ref={containerRef}
-          className="flex gap-6 overflow-x-auto pb-8 pt-2 scrollbar-none snap-x snap-mandatory cursor-grab active:cursor-grabbing select-none"
-          style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          className="flex gap-6 overflow-x-auto no-scrollbar pb-6 -mx-5 px-5 sm:-mx-8 sm:px-8 lg:-mx-12 lg:px-12 scroll-smooth"
         >
           {CONTRASTS.map((item) => (
-            <motion.div
+            <div
               key={item.id}
-              whileHover={{ y: -4 }}
-              transition={{ type: "spring", stiffness: 300, damping: 25 }}
-              className="min-w-[320px] sm:min-w-[390px] rounded-3xl bg-[#1A141D] border border-[#2E2433] p-7 shadow-lg shadow-black/40 flex flex-col justify-between snap-start space-y-6 shrink-0"
+              className="w-[340px] sm:w-[390px] shrink-0 rounded-3xl bg-white border border-[#E7E2DA] shadow-md p-6 sm:p-7 flex flex-col justify-between space-y-6 hover:shadow-xl transition-all"
             >
-              <div>
-                <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#241C29] border border-[#2E2433] text-[#F5EFE8] mb-4">
+              {/* Domain Header */}
+              <div className="flex items-center justify-between pb-3 border-b border-[#E7E2DA]">
+                <span className="font-extrabold text-base text-[#1C1B1B]">
                   {item.domain}
                 </span>
-
-                {/* The Red Flag Section (Sentence Case) */}
-                <div className="p-4 rounded-2xl bg-[#241C29] border border-[#E5484D]/30 space-y-2 mb-4">
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#E5484D]">
-                    <ShieldAlert className="w-4 h-4" />
-                    <span>Red flag habit</span>
-                  </div>
-                  <h4 className="text-sm font-bold text-[#F5EFE8]">
-                    {item.datingSlop.title}
-                  </h4>
-                  <p className="text-xs text-[#B8AEB6] leading-relaxed">
-                    {item.datingSlop.description}
-                  </p>
-                </div>
-
-                {/* The Mature Shift Section (Sentence Case) */}
-                <div className="p-4 rounded-2xl bg-[#100C12] border border-[#FFB36B]/30 space-y-2">
-                  <div className="flex items-center gap-2 text-xs font-bold text-[#FFB36B]">
-                    <CheckCircle2 className="w-4 h-4" />
-                    <span>Mature mind standard</span>
-                  </div>
-                  <h4 className="text-sm font-bold text-[#F5EFE8]">
-                    {item.matureShift.title}
-                  </h4>
-                  <p className="text-xs text-[#B8AEB6] leading-relaxed">
-                    {item.matureShift.description}
-                  </p>
-                </div>
+                <span className="text-xs font-mono font-bold text-[#68645E]">
+                  Domain 0{item.id}
+                </span>
               </div>
 
-              <div className="pt-2 border-t border-[#2E2433] flex items-center justify-between text-[11px] font-mono text-[#7E747E]">
-                <span>Domain 0{item.id}</span>
-                <span>Relational integrity</span>
+              {/* Red Flag Block */}
+              <div className="p-4 rounded-2xl bg-[#FFEFEF] border border-[#FF5A60]/20 space-y-2">
+                <div className="flex items-center gap-2 text-xs font-black uppercase text-[#BA1A1A]">
+                  <ShieldAlert className="w-4 h-4" />
+                  <span>Red flag habit</span>
+                </div>
+                <h3 className="text-sm font-bold text-[#1C1B1B]">
+                  {item.datingSlop.title}
+                </h3>
+                <p className="text-xs text-[#4F4633] leading-relaxed">
+                  {item.datingSlop.description}
+                </p>
               </div>
-            </motion.div>
+
+              {/* Growth Space Block */}
+              <div className="p-4 rounded-2xl bg-[#E8F5E9] border border-[#2D6A4F]/20 space-y-2">
+                <div className="flex items-center gap-2 text-xs font-black uppercase text-[#2D6A4F]">
+                  <CheckCircle2 className="w-4 h-4" />
+                  <span>Just mature mind standard</span>
+                </div>
+                <h3 className="text-sm font-bold text-[#1C1B1B]">
+                  {item.matureShift.title}
+                </h3>
+                <p className="text-xs text-[#4F4633] leading-relaxed">
+                  {item.matureShift.description}
+                </p>
+              </div>
+            </div>
           ))}
         </div>
       </div>

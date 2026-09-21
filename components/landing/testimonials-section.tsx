@@ -1,8 +1,10 @@
 "use client";
 
 import React from "react";
+import Image from "next/image";
 import { motion } from "framer-motion";
-import { Quote, Sparkles, CheckCircle2 } from "lucide-react";
+import { Quote, Sparkles, CheckCircle2, ShieldCheck, Heart } from "lucide-react";
+import { CardTilt } from "@/components/ui/card-tilt";
 
 interface Testimonial {
   id: string;
@@ -10,7 +12,7 @@ interface Testimonial {
   age: number;
   location: string;
   intent: string;
-  intentKey: string;
+  photo: string;
   quote: string;
   outcome: string;
 }
@@ -18,47 +20,47 @@ interface Testimonial {
 const TESTIMONIALS: Testimonial[] = [
   {
     id: "test-1",
-    name: "Elena",
+    name: "Chioma & Liam",
     age: 36,
-    location: "Austin, TX",
-    intent: "Short-term fun",
-    intentKey: "short_term_fun",
+    location: "London & Lagos",
+    intent: "Conscious Marriage",
+    photo: "/images/interracial_couple_terrace.jpg",
     quote:
-      "We met for a bounded 4-week adventure between contracts. We were completely explicit on day one about our availability and end dates. It was the most electric, passionate, yet emotionally clean romance of my life.",
-    outcome: "Ended cleanly with deep mutual respect.",
+      "We started as an international connection between London and Lagos. No manufactured soulmate fantasies—we calibrated how we handle finances, cultural traditions, and family boundaries before talking about rings. Married 18 months with zero passive-aggression.",
+    outcome: "Married 18 months • Clear repair rituals.",
   },
   {
     id: "test-2",
-    name: "Marcus",
-    age: 44,
-    location: "London, UK",
-    intent: "Serious relationship",
-    intentKey: "serious_relationship",
+    name: "Tunde",
+    age: 37,
+    location: "Lagos / New York",
+    intent: "Sovereign Long-Term",
+    photo: "/images/nigerian_man_lagos.jpg",
     quote:
-      "After my divorce, dating apps felt like a minefield of ghosting and scorekeeping. Finding someone here who can say, 'I need 20 minutes to regulate before answering,' rather than stonewalling, changed everything.",
-    outcome: "Together 14 months, zero passive aggression.",
+      "As a founder running teams across continents, typical dating apps felt like a minefield of games and unsaid expectations. Finding someone who can say, 'I need 20 minutes to regulate before answering,' rather than stonewalling, changed my standard forever.",
+    outcome: "Together 14 months • 100% transparent pacing.",
   },
   {
     id: "test-3",
-    name: "Julian",
-    age: 31,
-    location: "New York, NY",
-    intent: "Hookups — same-night clarity",
-    intentKey: "hookups",
+    name: "Amina",
+    age: 33,
+    location: "Abuja / London",
+    intent: "Short-Term Clarity",
+    photo: "/images/nigerian_woman_radiant.jpg",
     quote:
-      "Attraction is everywhere; adult conduct is rare. Knowing that everyone here says what they want and leaves you feeling better than they found you makes desire exciting again, with zero anxiety spiral.",
-    outcome: "Consensual, elevated intimacy.",
+      "Attraction is everywhere; adult conduct is rare. We met for a bounded 6-week adventure between contracts. We were explicit about our schedules and boundaries on day one. It was the most electric, passionate, and emotionally clean romance of my life.",
+    outcome: "Ended cleanly with deep lifelong mutual respect.",
   },
   {
     id: "test-4",
-    name: "Chloe & David",
+    name: "Elena & David",
     age: 41,
-    location: "Seattle, WA",
-    intent: "Marriage",
-    intentKey: "marriage",
+    location: "San Francisco / NYC",
+    intent: "Devoted Partnership",
+    photo: "/images/interracial_couple_coffee.jpg",
     quote:
-      "No manufactured soulmate projections. We calibrated how we handle finances, sickness, and family boundaries before ever talking about rings. Calibrating for character before the altar made all the difference.",
-    outcome: "Married 18 months with clear repair rituals.",
+      "Knowing that both of us were screened for somatic regulation and zero-ghosting removed 90% of dating anxiety. When friction sparks, we unpack it over espresso with genuine curiosity rather than defensiveness.",
+    outcome: "Regulated devotion • Co-authored life roadmap.",
   },
 ];
 
@@ -66,71 +68,91 @@ export function TestimonialsSection() {
   return (
     <section
       id="social-proof"
-      className="py-20 md:py-32 bg-[#100C12] border-t border-[#2E2433] relative overflow-hidden"
+      className="py-24 md:py-32 bg-[#FAF8F5] border-b border-[#E7E2DA] relative overflow-hidden"
     >
-      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
-        {/* Section Header with Scroll Reveal */}
+      <div className="w-full px-8 sm:px-12 md:px-16 lg:px-20 2xl:px-28 relative z-10">
+        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-2xl mx-auto mb-16 space-y-3"
+          className="text-center max-w-3xl mx-auto mb-16 space-y-4"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#241C29] border border-[#2E2433] text-[#FFB36B] text-xs font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-[#E7E2DA] text-[#FF5A60] text-xs font-bold uppercase tracking-wider shadow-sm">
             <Sparkles className="w-3.5 h-3.5" />
             <span>Real Outcomes Across Every Intent</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#F5EFE8] tracking-tight">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#1C1B1B] tracking-tight">
             Desire with Standards in Practice
           </h2>
 
-          <p className="text-base text-[#B8AEB6] leading-relaxed">
-            From same-night clarity to lifetime vows — see how emotional maturity upgrades connection for adults ages 25–60.
+          <p className="text-base sm:text-lg text-[#4F4633] leading-relaxed">
+            From same-night clarity to lifetime vows — see how emotional maturity elevates connections for adults across Lagos, London, NYC, and beyond.
           </p>
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {/* Testimonials Grid with Photos & 3D CardTilt */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {TESTIMONIALS.map((t, idx) => (
             <motion.div
               key={t.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.15 }}
+              viewport={{ once: true }}
               transition={{ duration: 0.4, delay: idx * 0.1 }}
-              whileHover={{ y: -4 }}
-              className="p-7 sm:p-8 rounded-3xl bg-[#1A141D] border border-[#2E2433] shadow-lg shadow-black/40 flex flex-col justify-between space-y-5 transition-colors hover:border-[#FF5A7A]/30"
             >
-              <div className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center gap-2">
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-semibold bg-[#241C29] border border-[#2E2433] text-[#FF5A7A]">
+              <CardTilt
+                maxTilt={4}
+                glareOpacity={0.08}
+                className="p-8 sm:p-10 rounded-3xl bg-white border border-[#E7E2DA] shadow-md hover:shadow-xl flex flex-col justify-between space-y-6 h-full"
+              >
+                <div className="space-y-5">
+                  {/* Header Profile with Image */}
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center gap-4">
+                      <div className="relative w-16 h-16 rounded-2xl overflow-hidden ring-2 ring-[#FF5A60]/30 shrink-0">
+                        <Image
+                          src={t.photo}
+                          alt={`${t.name} photo`}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                      <div>
+                        <div className="flex items-center gap-1.5 text-lg font-black text-[#1C1B1B]">
+                          {t.name}, {t.age}
+                          <CheckCircle2 className="w-4 h-4 text-[#2D6A4F]" />
+                        </div>
+                        <span className="text-xs text-[#68645E] block font-medium">
+                          {t.location}
+                        </span>
+                      </div>
+                    </div>
+
+                    <span className="px-3.5 py-1 rounded-full text-xs font-extrabold bg-[#FAF8F5] border border-[#E7E2DA] text-[#FF5A60]">
                       {t.intent}
                     </span>
                   </div>
-                  <Quote className="w-5 h-5 text-[#FFB36B]/40" />
+
+                  {/* Quote */}
+                  <p className="text-sm sm:text-base text-[#1C1B1B] leading-relaxed font-medium italic">
+                    “{t.quote}”
+                  </p>
                 </div>
 
-                <blockquote className="text-sm sm:text-base text-[#F5EFE8] leading-relaxed italic">
-                  “{t.quote}”
-                </blockquote>
-              </div>
-
-              <div className="pt-4 border-t border-[#2E2433] flex items-center justify-between text-xs">
-                <div>
-                  <span className="font-bold text-[#F5EFE8] block">
-                    {t.name}, {t.age}
+                {/* Outcome Badge */}
+                <div className="pt-5 border-t border-[#E7E2DA] flex items-center justify-between text-xs sm:text-sm">
+                  <span className="text-[#2D6A4F] font-bold flex items-center gap-1.5">
+                    <ShieldCheck className="w-4 h-4" />
+                    <span>{t.outcome}</span>
                   </span>
-                  <span className="text-[#B8AEB6]">{t.location}</span>
+                  <span className="text-xs font-bold text-[#68645E]">
+                    Verified Cohort Member
+                  </span>
                 </div>
-
-                <div className="flex items-center gap-1.5 text-[#FFB36B] font-medium text-[11px]">
-                  <CheckCircle2 className="w-3.5 h-3.5 shrink-0" />
-                  <span>{t.outcome}</span>
-                </div>
-              </div>
+              </CardTilt>
             </motion.div>
           ))}
         </div>

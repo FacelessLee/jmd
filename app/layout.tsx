@@ -17,17 +17,17 @@ const serifFont = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Just Mature Mind — Desire, with standards",
+  title: "Just Mature Mind — Conscious Dating & Curated Matchmaking",
   description:
-    "Hookups to marriage — match with people who say what they want and mean what they say. Emotional maturity is the sexiest thing in the room.",
+    "Curated matchmaking and conscious dating for high-EQ adults. From uninhibited chemistry to lifelong marriage — match with intentional adults who communicate with clarity.",
   metadataBase: new URL("https://justmaturemind.com"),
   alternates: {
     canonical: "https://justmaturemind.com",
   },
   openGraph: {
-    title: "Just Mature Mind — Desire, with standards",
+    title: "Just Mature Mind — Conscious Dating & Curated Matchmaking",
     description:
-      "Hookups to marriage — match with people who say what they want and mean what they say. Emotional maturity is the sexiest thing in the room.",
+      "Curated matchmaking and conscious dating for high-EQ adults. From uninhibited chemistry to lifelong marriage — match with intentional adults who communicate with clarity.",
     url: "https://justmaturemind.com",
     siteName: "Just Mature Mind",
     type: "website",
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Just Mature Mind — Desire, with standards",
+    title: "Just Mature Mind — Conscious Dating & Curated Matchmaking",
     description:
       "Whatever you're here for — clarity and conduct are the sexiest things in the room. Match with emotional maturity.",
   },
@@ -50,8 +50,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sansFont.variable} ${serifFont.variable} dark`}>
-      <body className="font-sans antialiased bg-[#100C12] text-[#F5EFE8] selection:bg-[#FF5A7A] selection:text-[#100C12]">
+    <html lang="en" className={`${sansFont.variable} ${serifFont.variable}`}>
+      <body className="font-sans antialiased bg-[#FCF9F8] text-[#1C1B1B] selection:bg-[#FF5A60]/20 selection:text-[#FF5A60]">
         <SmoothScrollProvider>
           <MouseAmbientGlow />
           {children}

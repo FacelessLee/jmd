@@ -1,37 +1,49 @@
 import { Navbar } from "@/components/landing/navbar";
 import { Hero } from "@/components/landing/hero";
-import { CorePillarsBento } from "@/components/landing/core-pillars-bento";
+import { ChemistrySpectrum } from "@/components/landing/chemistry-spectrum";
+import { MatchmakingProtocol } from "@/components/landing/matchmaking-protocol";
+import { DilemmaDeckSection } from "@/components/landing/dilemma-deck-section";
 import { MaturityMetricSection } from "@/components/landing/maturity-metric-section";
-import { TestimonialsSection } from "@/components/landing/testimonials-section";
+import { CorePillarsBento } from "@/components/landing/core-pillars-bento";
 import { ComparisonCarousel } from "@/components/landing/comparison-carousel";
+import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { LeadCaptureSection } from "@/components/landing/lead-capture-section";
 import { Footer } from "@/components/landing/footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col bg-[#100C12] text-[#F5EFE8] selection:bg-[#FF5A7A] selection:text-[#100C12]">
-      {/* Dynamic Sticky Navbar with Top Scroll Progress */}
+    <main className="min-h-screen flex flex-col bg-[#FCF9F8] text-[#1C1B1B] selection:bg-[#FF5A60]/20 selection:text-[#FF5A60]">
+      {/* Sticky Top Navbar with Official Brand Logo & Matchmaking Navigation */}
       <Navbar />
 
-      {/* Hero Section: 6-Intent Segmentation + Interactive Swipe Deck Above the Fold */}
+      {/* Hero Section: 6-Intent Segmentation + Interactive Matchmaking Profile Deck */}
       <Hero />
 
-      {/* The Four Foundations: Bento Grid with Mouse-Tracking Spotlight Borders */}
-      <CorePillarsBento />
+      {/* The Modern Relational Spectrum: 4 Photo-Forward Archetype Cards */}
+      <ChemistrySpectrum />
 
-      {/* The Maturity Metric: Interactive Gauge & Superpower Assessment */}
+      {/* Curated Matchmaking Architecture & Live Cohort Preview (African & Global Profiles) */}
+      <MatchmakingProtocol />
+
+      {/* Interactive Dilemma Simulator with Real-Time Telemetry & Scripts */}
+      <DilemmaDeckSection />
+
+      {/* Maturity Metric: 3-Step Interactive Superpower Assessment */}
       <MaturityMetricSection />
 
-      {/* Real Outcomes: Real-Style Testimonials Across Diverse Intents */}
-      <TestimonialsSection />
+      {/* The Four Foundations: Bento Grid with Grounded Principles */}
+      <CorePillarsBento />
 
-      {/* Red Flag vs. Growth Space Horizontal Momentum Carousel */}
+      {/* Swipe Culture vs. Mature Mind: Direct Contrast Carousel */}
       <ComparisonCarousel />
 
-      {/* High-Conversion Lead Capture Tailored to Selected Intent */}
+      {/* Real Outcomes: Authentic Stories & Photography across Lagos, London & NYC */}
+      <TestimonialsSection />
+
+      {/* Private Circle & Matchmaking Cohort Application Module */}
       <LeadCaptureSection />
 
-      {/* Dark Aubergine Footer */}
+      {/* Warm Minimalist Footer */}
       <Footer />
     </main>
   );

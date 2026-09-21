@@ -3,41 +3,35 @@
 import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import confetti from "canvas-confetti";
-import { MagneticButton } from "@/components/ui/magnetic-button";
 import { INTENTS, IntentKey } from "@/lib/intents";
-import { Sparkles, CheckCircle2, AlertCircle, ArrowRight, ShieldCheck } from "lucide-react";
+import {
+  Sparkles,
+  CheckCircle2,
+  AlertCircle,
+  ArrowRight,
+  ShieldCheck,
+  Lock,
+  Flame,
+  Check,
+  Globe,
+} from "lucide-react";
+import { MagneticButton } from "@/components/ui/magnetic-button";
 
 export function LeadCaptureSection() {
-  const [firstName, setFirstName] = useState("");
+  const [fullName, setFullName] = useState("");
   const [email, setEmail] = useState("");
-  const [currentIntent, setCurrentIntent] = useState<IntentKey>("serious_relationship");
+  const [relationshipFocus, setRelationshipFocus] = useState<string>("serious");
+  const [attachmentStyle, setAttachmentStyle] = useState<string>("secure");
+  const [agePreference, setAgePreference] = useState<string>("28_38");
+  const [cityLocation, setCityLocation] = useState<string>("");
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">("idle");
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    const saved = localStorage.getItem("jmm_intent") as IntentKey;
-    if (saved && INTENTS[saved]) {
-      setCurrentIntent(saved);
-    }
-
-    const handleIntentChange = (e: Event) => {
-      const customEvent = e as CustomEvent<IntentKey>;
-      if (customEvent.detail && INTENTS[customEvent.detail]) {
-        setCurrentIntent(customEvent.detail);
-      }
-    };
-
-    window.addEventListener("intent_change", handleIntentChange);
-    return () => window.removeEventListener("intent_change", handleIntentChange);
-  }, []);
-
-  const activeConfig = INTENTS[currentIntent];
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!email.trim()) {
+    if (!email.trim() || !fullName.trim()) {
       setStatus("error");
-      setErrorMessage("Please enter a valid email address.");
+      setErrorMessage("Please complete all required fields.");
       return;
     }
 
@@ -49,26 +43,29 @@ export function LeadCaptureSection() {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          firstName: firstName.trim() || "Member",
+          firstName: fullName.trim(),
           email: email.trim(),
-          relationshipGoal: currentIntent,
+          relationshipGoal: relationshipFocus,
+          city: cityLocation.trim(),
+          attachmentStyle,
+          agePreference,
         }),
       });
 
       const data = await res.json();
 
       if (!res.ok) {
-        throw new Error(data.error || "Failed to submit. Please try again.");
+        throw new Error(data.error || "Failed to submit application. Please try again.");
       }
 
       setStatus("success");
 
-      // Celebratory micro-burst with dark warm palette colors
+      // Celebratory confetti burst with warm sunset flame colors
       confetti({
-        particleCount: 70,
-        spread: 60,
-        origin: { y: 0.7 },
-        colors: ["#FF5A7A", "#FFB36B", "#E5484D"],
+        particleCount: 80,
+        spread: 70,
+        origin: { y: 0.65 },
+        colors: ["#FF5A60", "#FFA41C", "#FFC629", "#2D6A4F"],
       });
     } catch (err: unknown) {
       setStatus("error");
@@ -78,125 +75,216 @@ export function LeadCaptureSection() {
 
   return (
     <section
-      id="join-circle"
-      className="py-20 md:py-32 bg-[#100C12] border-t border-[#2E2433] relative overflow-hidden"
+      id="join-cohort"
+      className="py-24 md:py-32 bg-gradient-to-b from-[#F3EFEA] to-[#FFF4EC] border-b border-[#E7E2DA] relative overflow-hidden"
     >
-      {/* Background Ambience */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-[radial-gradient(ellipse_at_center,rgba(255,90,122,0.06)_0%,transparent_70%)] blur-3xl pointer-events-none" />
+      {/* Anchor for backward compatibility */}
+      <div id="join-circle" className="absolute top-0 left-0 w-0 h-0" />
 
-      <div className="max-w-4xl mx-auto px-6 md:px-10 relative z-10">
+      {/* Ambient Flame Glow */}
+      <div className="absolute -top-16 -right-16 w-72 h-72 rounded-full bg-[#FF5A60]/10 blur-3xl pointer-events-none" />
+
+      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="relative rounded-3xl bg-[#1A141D] border border-[#2E2433] shadow-[0_24px_60px_rgba(0,0,0,0.5)] p-8 sm:p-14 overflow-hidden"
+          className="relative rounded-3xl bg-white border border-[#E7E2DA] shadow-2xl p-8 sm:p-14 md:p-16 overflow-hidden"
         >
-          {/* Subtle Top Accent Shimmer Line */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#FF5A7A] via-[#FFB36B] to-[#FF5A7A]" />
+          {/* Top Accent Gradient Line */}
+          <div className="absolute top-0 left-0 right-0 h-1.5 flame-gradient" />
 
-          <div className="max-w-2xl mx-auto text-center space-y-4 mb-10">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#241C29] border border-[#2E2433] text-[#FFB36B] uppercase tracking-wider">
-              <Sparkles className="w-3.5 h-3.5" />
-              <span>Tailored Intent • {activeConfig.label}</span>
-            </span>
-
-            <h2 className="text-3xl sm:text-4xl font-bold text-[#F5EFE8] tracking-tight">
-              Ready to {activeConfig.cta.toLowerCase()}?
-            </h2>
-
-            <p className="text-sm sm:text-base text-[#B8AEB6] leading-relaxed">
-              Join 8,400+ vetted adults who prioritize emotional maturity, explicit conduct, and genuine chemistry over dopamine swipe games.
-            </p>
-          </div>
-
-          {status === "success" ? (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              className="p-8 rounded-2xl bg-[#241C29] border border-[#FFB36B]/30 text-center space-y-4"
-            >
-              <div className="w-12 h-12 rounded-full bg-[#FFB36B] text-[#100C12] flex items-center justify-center mx-auto shadow-md">
-                <CheckCircle2 className="w-6 h-6" />
-              </div>
-              <h3 className="text-xl font-bold text-[#F5EFE8]">
-                Welcome to the Circle{firstName ? `, ${firstName}` : ""}!
-              </h3>
-              <p className="text-sm text-[#B8AEB6] max-w-md mx-auto leading-relaxed">
-                We have reserved your priority access. Check your inbox ({email}) shortly for our foundational repair and communication guides.
-              </p>
-            </motion.div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-5 max-w-lg mx-auto">
-              {status === "error" && (
-                <div className="p-3.5 rounded-xl bg-[#E5484D]/15 border border-[#E5484D]/30 flex items-center gap-2.5 text-xs font-semibold text-[#E5484D]">
-                  <AlertCircle className="w-4 h-4 shrink-0" />
-                  <span>{errorMessage}</span>
-                </div>
-              )}
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <div>
-                  <label
-                    htmlFor="firstName"
-                    className="block text-xs font-semibold text-[#B8AEB6] mb-1.5"
-                  >
-                    First Name (Optional)
-                  </label>
-                  <input
-                    id="firstName"
-                    type="text"
-                    placeholder="E.g., Julian"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-[#241C29] border border-[#2E2433] text-sm text-[#F5EFE8] placeholder-[#7E747E] focus:outline-none focus:border-[#FF5A7A] focus:ring-1 focus:ring-[#FF5A7A] transition-all"
-                  />
+          {status !== "success" ? (
+            <>
+              <div className="text-center max-w-3xl mx-auto mb-12 space-y-4">
+                <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FF5A60]/10 text-[#FF5A60] text-xs font-bold uppercase tracking-wider">
+                  <Lock className="w-3.5 h-3.5" />
+                  <span>Private Circle &amp; Matchmaking Cohorts</span>
                 </div>
 
-                <div>
-                  <label
-                    htmlFor="email"
-                    className="block text-xs font-semibold text-[#B8AEB6] mb-1.5"
-                  >
-                    Email Address <span className="text-[#FF5A7A]">*</span>
-                  </label>
-                  <input
-                    id="email"
-                    type="email"
-                    required
-                    placeholder="you@domain.com"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    className="w-full px-4 py-3 rounded-xl bg-[#241C29] border border-[#2E2433] text-sm text-[#F5EFE8] placeholder-[#7E747E] focus:outline-none focus:border-[#FF5A7A] focus:ring-1 focus:ring-[#FF5A7A] transition-all"
-                  />
+                <h2 className="text-3xl sm:text-4xl font-black text-[#1C1B1B] tracking-tight">
+                  Apply for Curated Matchmaking
+                </h2>
+
+                <p className="text-sm sm:text-base text-[#4F4633] leading-relaxed">
+                  Gain access to verified profiles, weekly communication breakdowns, and double-blind introductions across Lagos, London, NYC, Atlanta, and global hubs with zero dopamine algorithms.
+                </p>
+              </div>
+
+              {/* Application Form */}
+              <form onSubmit={handleSubmit} className="space-y-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#1C1B1B] mb-1.5" htmlFor="full-name">
+                      Full Name *
+                    </label>
+                    <input
+                      id="full-name"
+                      type="text"
+                      required
+                      value={fullName}
+                      onChange={(e) => setFullName(e.target.value)}
+                      placeholder="e.g., Tunde Vance"
+                      className="w-full px-4 py-3 rounded-2xl bg-[#FAF8F5] text-[#1C1B1B] border border-[#E7E2DA] focus:bg-white focus:border-[#FF5A60] focus:outline-none transition-colors text-sm font-medium"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#1C1B1B] mb-1.5" htmlFor="email-address">
+                      Email Address *
+                    </label>
+                    <input
+                      id="email-address"
+                      type="email"
+                      required
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      placeholder="tunde@domain.com"
+                      className="w-full px-4 py-3 rounded-2xl bg-[#FAF8F5] text-[#1C1B1B] border border-[#E7E2DA] focus:bg-white focus:border-[#FF5A60] focus:outline-none transition-colors text-sm font-medium"
+                    />
+                  </div>
                 </div>
-              </div>
 
-              {/* Dynamic Intent Pill Notice */}
-              <div className="p-3 rounded-xl bg-[#241C29]/60 border border-[#2E2433] text-xs text-[#B8AEB6] flex items-center justify-between">
-                <span>Matching profile filter:</span>
-                <span className="font-semibold text-[#FF5A7A]">{activeConfig.label}</span>
-              </div>
+                {/* Intent & Attachment Baseline */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#1C1B1B] mb-1.5" htmlFor="relationship-focus">
+                      Looking For (Intent)
+                    </label>
+                    <select
+                      id="relationship-focus"
+                      value={relationshipFocus}
+                      onChange={(e) => setRelationshipFocus(e.target.value)}
+                      className="w-full px-4 py-3 rounded-2xl bg-[#FAF8F5] text-[#1C1B1B] border border-[#E7E2DA] focus:bg-white focus:border-[#FF5A60] focus:outline-none transition-colors text-sm font-medium cursor-pointer"
+                    >
+                      <option value="hookup">Hookups — Same-Night Clarity</option>
+                      <option value="short_term">Short-Term Fun &amp; Chemistry</option>
+                      <option value="long_term_fun">Long-Term Fun &amp; Adventures</option>
+                      <option value="serious">Conscious Life Partner / Marriage</option>
+                      <option value="arrangement">Explicit Mutual Arrangement</option>
+                      <option value="no_strings">No Strings Attached (Respect First)</option>
+                    </select>
+                  </div>
 
-              {/* Submit CTA with Dynamic Text */}
-              <div className="pt-2">
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#1C1B1B] mb-1.5" htmlFor="attachment-style">
+                      Attachment Baseline
+                    </label>
+                    <select
+                      id="attachment-style"
+                      value={attachmentStyle}
+                      onChange={(e) => setAttachmentStyle(e.target.value)}
+                      className="w-full px-4 py-3 rounded-2xl bg-[#FAF8F5] text-[#1C1B1B] border border-[#E7E2DA] focus:bg-white focus:border-[#FF5A60] focus:outline-none transition-colors text-sm font-medium cursor-pointer"
+                    >
+                      <option value="secure">Secure &amp; Communicative</option>
+                      <option value="regulated">Regulated / Practicing Repair</option>
+                      <option value="anxious_healing">Anxious-Leaning (Committed to Growth)</option>
+                      <option value="avoidant_healing">Avoidant-Healing (Committed to Closeness)</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Age & City Hub */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#1C1B1B] mb-1.5" htmlFor="age-preference">
+                      Age Preference Range
+                    </label>
+                    <select
+                      id="age-preference"
+                      value={agePreference}
+                      onChange={(e) => setAgePreference(e.target.value)}
+                      className="w-full px-4 py-3 rounded-2xl bg-[#FAF8F5] text-[#1C1B1B] border border-[#E7E2DA] focus:bg-white focus:border-[#FF5A60] focus:outline-none transition-colors text-sm font-medium cursor-pointer"
+                    >
+                      <option value="28_38">28 – 38 Years Old</option>
+                      <option value="35_48">35 – 48 Years Old</option>
+                      <option value="45_62">45 – 62+ Years Old</option>
+                      <option value="chemistry">Flexible / Chemistry &amp; EQ First</option>
+                    </select>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-black uppercase tracking-wider text-[#1C1B1B] mb-1.5" htmlFor="city-location">
+                      City / Metro Hub *
+                    </label>
+                    <input
+                      id="city-location"
+                      type="text"
+                      required
+                      value={cityLocation}
+                      onChange={(e) => setCityLocation(e.target.value)}
+                      placeholder="e.g., Lagos, London, New York, Atlanta, Paris"
+                      className="w-full px-4 py-3 rounded-2xl bg-[#FAF8F5] text-[#1C1B1B] border border-[#E7E2DA] focus:bg-white focus:border-[#FF5A60] focus:outline-none transition-colors text-sm font-medium"
+                    />
+                  </div>
+                </div>
+
+                {errorMessage && (
+                  <div className="p-3.5 rounded-xl bg-[#FFEFEF] border border-[#FF5A60]/30 text-xs text-[#BA1A1A] flex items-center gap-2">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{errorMessage}</span>
+                  </div>
+                )}
+
                 <MagneticButton
-                  variant="primary"
                   type="submit"
-                  strength={6}
                   disabled={status === "submitting"}
-                  className="w-full py-4 text-xs sm:text-sm uppercase tracking-wider font-bold"
+                  variant="flame"
+                  strength={6}
+                  textStrength={3}
+                  className="w-full py-4 text-sm font-extrabold mt-2"
                 >
-                  {status === "submitting" ? "Securing Spot..." : activeConfig.cta}
+                  <Flame className="w-4 h-4" />
+                  <span>
+                    {status === "submitting" ? "Submitting Application..." : "Apply for Matchmaking Circle & Cohort"}
+                  </span>
                   <ArrowRight className="w-4 h-4" />
                 </MagneticButton>
+
+                {/* Trust Badges */}
+                <div className="flex flex-wrap items-center justify-center gap-4 text-center text-xs text-[#68645E] pt-3">
+                  <span className="inline-flex items-center gap-1.5 font-bold">
+                    <CheckCircle2 className="w-4 h-4 text-[#2D6A4F]" />
+                    <span>100% Identity &amp; EQ Vetted</span>
+                  </span>
+                  <span>•</span>
+                  <span className="inline-flex items-center gap-1.5 font-bold">
+                    <ShieldCheck className="w-4 h-4 text-[#2D6A4F]" />
+                    <span>Zero Ghosting Charter</span>
+                  </span>
+                  <span>•</span>
+                  <span className="inline-flex items-center gap-1.5 font-bold">
+                    <Lock className="w-3.5 h-3.5 text-[#FFA41C]" />
+                    <span>Strict Discretion</span>
+                  </span>
+                </div>
+              </form>
+            </>
+          ) : (
+            /* Success State */
+            <div className="text-center py-8 space-y-4">
+              <div className="w-16 h-16 rounded-full bg-[#E8F5E9] text-[#2D6A4F] mx-auto flex items-center justify-center shadow-md">
+                <Check className="w-8 h-8 stroke-[3]" />
               </div>
 
-              <div className="flex items-center justify-center gap-2 text-[11px] text-[#7E747E] pt-2">
-                <ShieldCheck className="w-3.5 h-3.5 text-[#FFB36B]" />
-                <span>Strict discretion. No spam. Unsubscribe anytime.</span>
+              <h3 className="text-2xl sm:text-3xl font-black text-[#1C1B1B]">
+                Matchmaking Application Received
+              </h3>
+
+              <p className="text-sm sm:text-base text-[#4F4633] max-w-md mx-auto leading-relaxed">
+                Welcome, <strong>{fullName}</strong>. Our matchmaking team reviews cohort applications individually to preserve our high-EQ community. Watch your inbox at <strong>{email}</strong> for your orientation invitation and somatic calibration primer.
+              </p>
+
+              <div className="pt-4">
+                <button
+                  onClick={() => setStatus("idle")}
+                  className="px-6 py-2.5 rounded-full bg-[#FAF8F5] border border-[#E7E2DA] text-xs font-bold text-[#1C1B1B] hover:bg-white transition-colors cursor-pointer"
+                >
+                  Submit Another Profile
+                </button>
               </div>
-            </form>
+            </div>
           )}
         </motion.div>
       </div>

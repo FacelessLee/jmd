@@ -6,7 +6,6 @@ import { QUIZ_QUESTIONS, SUPERPOWER_PROFILES } from "@/lib/quiz-data";
 import { SuperpowerProfile } from "@/lib/types";
 import { INTENTS, IntentKey } from "@/lib/intents";
 import { InteractiveGauge } from "@/components/ui/interactive-gauge";
-import { MagneticButton } from "@/components/ui/magnetic-button";
 import {
   Sparkles,
   ArrowRight,
@@ -118,33 +117,33 @@ export function MaturityMetricSection() {
   return (
     <section
       id="maturity-metric"
-      className="py-20 md:py-32 bg-[#100C12] border-t border-[#2E2433] relative overflow-hidden"
+      className="py-24 md:py-32 bg-[#FCF9F8] border-b border-[#E7E2DA] relative overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto px-6 md:px-10 relative z-10">
-        {/* Section Title with Scroll Reveal */}
+      <div className="w-full max-w-[1400px] mx-auto px-6 sm:px-10 lg:px-16 2xl:px-24 relative z-10">
+        {/* Section Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5 }}
-          className="text-center max-w-2xl mx-auto mb-14 space-y-3"
+          className="text-center max-w-3xl mx-auto mb-16 space-y-4"
         >
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#241C29] border border-[#2E2433] text-[#FF5A7A] text-xs font-semibold uppercase tracking-wider">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#FFA41C]/15 text-[#FFA41C] text-xs font-bold uppercase tracking-wider">
             <Award className="w-3.5 h-3.5" />
             <span>Maturity Metric Evaluation</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-bold text-[#F5EFE8] tracking-tight">
+          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-black text-[#1C1B1B] tracking-tight">
             Discover Your Relational Superpower
           </h2>
 
-          <p className="text-base text-[#B8AEB6] leading-relaxed">
+          <p className="text-base sm:text-lg text-[#4F4633] leading-relaxed">
             3 rapid scenario prompts to assess your emotional regulation, boundary architecture, and repair capability.
           </p>
         </motion.div>
 
         {/* Assessment Card Container */}
-        <div className="rounded-3xl bg-[#1A141D] border border-[#2E2433] shadow-[0_16px_45px_rgba(0,0,0,0.4)] p-7 sm:p-12 relative overflow-hidden">
+        <div className="rounded-3xl bg-white border border-[#E7E2DA] shadow-xl p-6 sm:p-10 md:p-12 relative overflow-hidden">
           <AnimatePresence mode="wait">
             {!resultProfile ? (
               <motion.div
@@ -161,27 +160,27 @@ export function MaturityMetricSection() {
                     {QUIZ_QUESTIONS.map((_, idx) => (
                       <div
                         key={idx}
-                        className={`h-2 rounded-full transition-all duration-300 ${
+                        className={`h-2.5 rounded-full transition-all duration-300 ${
                           idx === currentStep
-                            ? "w-8 bg-[#FF5A7A]"
+                            ? "w-10 flame-gradient"
                             : idx < currentStep
-                            ? "w-4 bg-[#FFB36B]"
-                            : "w-4 bg-[#2E2433]"
+                            ? "w-4 bg-[#2D6A4F]"
+                            : "w-4 bg-[#E7E2DA]"
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-xs font-mono font-bold text-[#B8AEB6]">
+                  <span className="text-xs font-mono font-bold text-[#68645E]">
                     Prompt 0{currentStep + 1} of 0{QUIZ_QUESTIONS.length}
                   </span>
                 </div>
 
                 {/* Scenario Context & Question */}
                 <div className="space-y-2">
-                  <span className="text-xs font-semibold uppercase tracking-widest text-[#FFB36B]">
+                  <span className="text-xs font-bold uppercase tracking-widest text-[#FF5A60]">
                     {activeQuestion.scenarioContext}
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#F5EFE8] leading-snug">
+                  <h3 className="text-xl sm:text-2xl font-black text-[#1C1B1B] leading-snug">
                     {activeQuestion.question}
                   </h3>
                 </div>
@@ -192,18 +191,18 @@ export function MaturityMetricSection() {
                     <button
                       key={option.id}
                       onClick={() => handleSelectOption(option)}
-                      className="group p-5 rounded-2xl bg-[#241C29] border border-[#2E2433] text-left transition-all duration-200 hover:border-[#FF5A7A]/50 hover:shadow-lg hover:shadow-[#FF5A7A]/10 hover:scale-[1.01] active:scale-[0.99] flex flex-col justify-between cursor-pointer"
+                      className="group p-5 rounded-2xl bg-[#FAF8F5] border border-[#E7E2DA] text-left transition-all duration-200 hover:border-[#FF5A60] hover:bg-white hover:shadow-md hover:scale-[1.01] active:scale-[0.99] flex flex-col justify-between cursor-pointer"
                     >
                       <div className="mb-3">
-                        <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#100C12] border border-[#2E2433] text-[#FFB36B] mb-2">
+                        <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-white border border-[#E7E2DA] text-[#FF5A60] mb-2">
                           {option.badge}
                         </span>
-                        <p className="text-sm font-medium text-[#F5EFE8] leading-relaxed">
+                        <p className="text-sm font-semibold text-[#1C1B1B] leading-relaxed">
                           {option.text}
                         </p>
                       </div>
 
-                      <div className="flex items-center text-xs font-semibold text-[#B8AEB6] group-hover:text-[#FF5A7A] transition-colors gap-1 pt-2">
+                      <div className="flex items-center text-xs font-bold text-[#68645E] group-hover:text-[#FF5A60] transition-colors gap-1 pt-2 border-t border-[#E7E2DA]/50">
                         <span>Select response</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -220,14 +219,14 @@ export function MaturityMetricSection() {
                 className="space-y-8"
               >
                 <div className="text-center space-y-2">
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-[#241C29] border border-[#2E2433] text-[#FFB36B] uppercase tracking-wider">
+                  <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-bold bg-[#E8F5E9] text-[#2D6A4F] uppercase tracking-wider">
                     <Sparkles className="w-3.5 h-3.5" />
                     Archetype Profile Generated
                   </span>
-                  <h3 className="text-3xl font-extrabold text-[#F5EFE8]">
+                  <h3 className="text-3xl font-black text-[#1C1B1B]">
                     {resultProfile.title}
                   </h3>
-                  <p className="text-sm font-medium text-[#B8AEB6]">
+                  <p className="text-sm font-medium text-[#4F4633]">
                     {resultProfile.subtitle}
                   </p>
                 </div>
@@ -244,26 +243,26 @@ export function MaturityMetricSection() {
 
                   {/* Right: Archetype Insights */}
                   <div className="md:col-span-7 space-y-4">
-                    <p className="text-sm text-[#F5EFE8] leading-relaxed">
+                    <p className="text-sm text-[#1C1B1B] leading-relaxed font-medium">
                       {resultProfile.description}
                     </p>
 
                     <div className="space-y-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#FFB36B]">
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#FF5A60]">
                         Core Superpower Strengths:
                       </span>
-                      <ul className="space-y-1.5 text-xs text-[#B8AEB6]">
+                      <ul className="space-y-1.5 text-xs text-[#4F4633]">
                         {resultProfile.strengths.map((str, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-[#FF5A7A] shrink-0 mt-0.5" />
+                            <CheckCircle2 className="w-4 h-4 text-[#2D6A4F] shrink-0 mt-0.5" />
                             <span>{str}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-[#241C29] border border-[#2E2433] text-xs text-[#B8AEB6]">
-                      <strong className="text-[#F5EFE8] block mb-0.5">
+                    <div className="p-3.5 rounded-xl bg-[#FAF8F5] border border-[#E7E2DA] text-xs text-[#4F4633]">
+                      <strong className="text-[#1C1B1B] block mb-0.5 font-bold">
                         Growth Edge:
                       </strong>
                       {resultProfile.growthEdge}
@@ -271,25 +270,24 @@ export function MaturityMetricSection() {
                   </div>
                 </div>
 
-                {/* Footer Controls with Tailored Intent CTA */}
-                <div className="pt-6 border-t border-[#2E2433] flex flex-wrap items-center justify-between gap-4">
+                {/* Footer Controls */}
+                <div className="pt-6 border-t border-[#E7E2DA] flex flex-wrap items-center justify-between gap-4">
                   <button
                     onClick={handleRestart}
-                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#B8AEB6] hover:text-[#F5EFE8] transition-colors cursor-pointer"
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#68645E] hover:text-[#1C1B1B] transition-colors cursor-pointer"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
                     Retake assessment
                   </button>
 
-                  <MagneticButton
-                    variant="primary"
+                  <button
                     onClick={() => {
-                      document.getElementById("join-circle")?.scrollIntoView({ behavior: "smooth" });
+                      document.getElementById("join-cohort")?.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="px-6 py-3 text-xs uppercase font-bold tracking-wider"
+                    className="px-6 py-3 rounded-full text-xs font-bold text-white flame-gradient shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer"
                   >
-                    Lock In Archetype & {activeIntentConfig.cta}
-                  </MagneticButton>
+                    Lock In Archetype &amp; Apply
+                  </button>
                 </div>
               </motion.div>
             )}

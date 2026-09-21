@@ -1,202 +1,333 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import { MagneticButton } from "@/components/ui/magnetic-button";
-import { CardStack } from "@/components/ui/card-stack";
-import { DILEMMA_CARDS } from "@/lib/cards-data";
-import { INTENTS, INTENT_KEYS, IntentKey } from "@/lib/intents";
+import React, { useState } from "react";
+import Image from "next/image";
+import { motion } from "framer-motion";
 import {
-  Sparkles,
+  Flame,
   ShieldCheck,
   CheckCircle2,
   ArrowRight,
-  Info,
+  Sparkles,
+  Heart,
+  X,
+  MessageCircle,
+  Bolt,
+  Compass,
+  Check,
 } from "lucide-react";
+import { MagneticButton } from "@/components/ui/magnetic-button";
+import { CardTilt } from "@/components/ui/card-tilt";
 
 export function Hero() {
-  const [selectedIntent, setSelectedIntent] = useState<IntentKey>("serious_relationship");
-  const [isClient, setIsClient] = useState(false);
+  const [matchActionState, setMatchActionState] = useState<"neutral" | "liked" | "passed">("neutral");
 
-  useEffect(() => {
-    setIsClient(true);
-    const saved = localStorage.getItem("jmm_intent") as IntentKey;
-    if (saved && INTENTS[saved]) {
-      setSelectedIntent(saved);
-    }
-  }, []);
-
-  const handleSelectIntent = (key: IntentKey) => {
-    setSelectedIntent(key);
-    if (typeof window !== "undefined") {
-      localStorage.setItem("jmm_intent", key);
-      window.dispatchEvent(new CustomEvent("intent_change", { detail: key }));
-    }
+  const scrollToSection = (id: string) => {
+    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const activeConfig = INTENTS[selectedIntent];
-
-  const scrollToJoin = () => {
-    document.getElementById("join-circle")?.scrollIntoView({ behavior: "smooth" });
+  const triggerMatchAction = (action: "liked" | "passed") => {
+    setMatchActionState(action);
+    setTimeout(() => setMatchActionState("neutral"), 1600);
   };
 
   return (
-    <section className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden bg-[#100C12]">
-      {/* Background Ambience & Micro-Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#2E243340_1px,transparent_1px),linear-gradient(to_bottom,#2E243340_1px,transparent_1px)] bg-[size:4rem_4rem] [mask-image:radial-gradient(ellipse_70%_60%_at_50%_10%,#000_60%,transparent_100%)] pointer-events-none" />
+    <section className="relative pt-28 pb-20 md:pt-36 md:pb-28 overflow-hidden bg-gradient-to-b from-[#FFF5ED] via-[#FCF9F8] to-[#FAF8F5] border-b border-[#E7E2DA]/80">
+      {/* Ambient Flame Radiance Glows */}
+      <div className="absolute -top-32 right-1/4 w-[650px] h-[650px] rounded-full bg-[#FF5A60]/10 blur-3xl pointer-events-none" />
+      <div className="absolute top-80 -left-28 w-[550px] h-[550px] rounded-full bg-[#FFA41C]/10 blur-3xl pointer-events-none" />
 
-      {/* Warm Ambient Gradient Shimmers */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[400px] bg-[radial-gradient(ellipse_at_center,rgba(255,90,122,0.06)_0%,rgba(255,179,107,0.03)_50%,transparent_80%)] blur-3xl pointer-events-none" />
+      <div className="w-full px-8 sm:px-12 md:px-16 lg:px-20 2xl:px-28 relative z-10">
+        {/* Main Hero Grid: Left Pitch & Right Interactive 3D Dating Profile Deck */}
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 2xl:gap-24 items-center">
+          {/* Left: Headline, Editorial Narrative & Magnetic CTAs */}
+          <div className="lg:col-span-6 2xl:col-span-6 flex flex-col items-start space-y-8 text-left">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#FF5A60]/10 border border-[#FF5A60]/20 text-[#FF5A60] text-xs sm:text-sm font-bold uppercase tracking-wider">
+              <Flame className="w-4 h-4 text-[#FF5A60]" />
+              <span>The Spicy Matchmaking App for High-EQ Adults</span>
+            </div>
 
-      <div className="max-w-7xl mx-auto px-6 md:px-10 relative z-10">
-        {/* Strategic Brand Spine Badge (Universal Across All 6 Intents) */}
-        <motion.div
-          initial={{ opacity: 0, y: 16 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="flex justify-center mb-6"
-        >
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-[#1A141D] border border-[#2E2433] shadow-sm text-xs font-semibold text-[#F5EFE8]">
-            <span className="flex h-2 w-2 rounded-full bg-[#FF5A7A] animate-pulse" />
-            <span className="text-[#B8AEB6]">The Golden Rule:</span>
-            <span className="text-[#F5EFE8] font-medium italic">
-              “Whatever you’re here for — clarity and conduct are the sexiest things in the room.”
-            </span>
-          </div>
-        </motion.div>
+            <div className="space-y-6">
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-7xl 2xl:text-8xl font-black text-[#1C1B1B] tracking-tight leading-[1.03]">
+                Attraction is easy.
+                <span className="block flame-gradient-text mt-1">
+                  Adult is rare.
+                </span>
+              </h1>
 
-        {/* 6-Intent Segmentation Chip Bar */}
-        <motion.div
-          initial={{ opacity: 0, y: 14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5, delay: 0.1 }}
-          className="flex flex-col items-center mb-10"
-        >
-          <p className="text-xs uppercase tracking-widest font-semibold text-[#B8AEB6] mb-3">
-            Select what you&apos;re here for:
-          </p>
-          <div className="flex flex-wrap items-center justify-center gap-2 max-w-4xl">
-            {INTENT_KEYS.map((key) => {
-              const intent = INTENTS[key];
-              const isSelected = selectedIntent === key;
-              return (
-                <button
-                  key={key}
-                  onClick={() => handleSelectIntent(key)}
-                  className={`px-4 py-2 rounded-full text-xs font-semibold transition-all duration-200 cursor-pointer ${
-                    isSelected
-                      ? "bg-[#FF5A7A] text-[#100C12] shadow-md shadow-[#FF5A7A]/30 scale-[1.03]"
-                      : "bg-[#1A141D] text-[#B8AEB6] border border-[#2E2433] hover:text-[#F5EFE8] hover:border-[#FF5A7A]/40 hover:bg-[#241C29]"
-                  }`}
-                >
-                  {intent.label}
-                </button>
-              );
-            })}
-          </div>
-        </motion.div>
+              <p className="text-lg sm:text-xl 2xl:text-2xl text-[#4F4633] leading-relaxed max-w-2xl 2xl:max-w-3xl font-normal">
+                Find people who say what they want, mean what they say, and leave you feeling better than they found you. Experience the magnetic visual rush of top-tier dating—vetted for emotional regulation, boundary architecture, and sovereign clarity.
+              </p>
 
-        {/* Main Hero Split Grid: Left = Dynamic Intent Content / Right = Live Swipe Deck Above the Fold */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
-          {/* Left Column: Dynamic Intent-Tailored Editorial Copy */}
-          <div className="lg:col-span-6 flex flex-col items-start space-y-6">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedIntent}
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                exit={{ opacity: 0, y: -10 }}
-                transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="space-y-5 w-full"
+              {/* Editorial Standard Card */}
+              <div className="p-4 sm:p-5 rounded-2xl bg-white/90 backdrop-blur-md border border-[#E7E2DA] shadow-sm flex items-start gap-4 text-sm sm:text-base text-[#68645E] max-w-2xl">
+                <Sparkles className="w-5 h-5 text-[#FFA41C] shrink-0 mt-0.5" />
+                <div>
+                  <strong className="text-[#1C1B1B] block font-bold mb-0.5">
+                    The Just Mature Mind Standard:
+                  </strong>
+                  Leads with desire, filters for conduct — maturity positioned as the upgrade to fun, not the enemy of it.
+                </div>
+              </div>
+            </div>
+
+            {/* Magnetic CTAs */}
+            <div className="flex flex-wrap items-center gap-4 pt-2">
+              <MagneticButton
+                onClick={() => scrollToSection("join-cohort")}
+                variant="flame"
+                strength={9}
+                textStrength={4}
+                className="px-9 py-4 text-base font-extrabold shadow-[0_8px_30px_rgba(255,90,96,0.38)]"
               >
-                {/* Active Mode Pill */}
-                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#241C29] border border-[#2E2433] text-xs font-semibold text-[#FFB36B]">
-                  <span>Segment: {activeConfig.label}</span>
-                </div>
+                <Bolt className="w-5 h-5" />
+                <span>Find Your Match</span>
+                <ArrowRight className="w-5 h-5" />
+              </MagneticButton>
 
-                {/* Verbatim Tailored Headline */}
-                <h1 className="text-4xl sm:text-5xl md:text-5xl lg:text-6xl font-bold text-[#F5EFE8] tracking-tight leading-[1.12]">
-                  {activeConfig.headline}
-                </h1>
+              <MagneticButton
+                onClick={() => scrollToSection("sparks-showcase")}
+                variant="outline"
+                strength={7}
+                textStrength={3}
+                className="px-8 py-4 text-base font-bold"
+              >
+                <Compass className="w-5 h-5 text-[#FFA41C]" />
+                <span>Explore The Spectrum</span>
+              </MagneticButton>
+            </div>
 
-                {/* Verbatim Tailored Subline */}
-                <p className="text-base sm:text-lg text-[#B8AEB6] leading-relaxed max-w-xl">
-                  {activeConfig.subline}
-                </p>
-
-                {/* Strategic Rationale Callout */}
-                <div className="p-3.5 rounded-2xl bg-[#1A141D] border border-[#2E2433] flex items-start gap-3 text-xs text-[#B8AEB6]">
-                  <Info className="w-4 h-4 text-[#FFB36B] shrink-0 mt-0.5" />
-                  <div>
-                    <strong className="text-[#F5EFE8] block mb-0.5">
-                      Why this standard works:
-                    </strong>
-                    {activeConfig.whyItWorks}
+            {/* Social Proof Strip with Authentic Avatars (Nigerians, Africans, Interracial) */}
+            <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-[#E7E2DA]/90 w-full max-w-2xl">
+              <div className="flex items-center gap-3.5">
+                <div className="flex -space-x-3.5 overflow-hidden">
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
+                    <Image
+                      src="/images/marcus_black_man.png"
+                      alt="Marcus profile avatar"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                </div>
-
-                {/* Tailored Intent CTA with Magnetic Cursor Pull */}
-                <div className="flex flex-wrap items-center gap-4 pt-2">
-                  <MagneticButton
-                    variant="primary"
-                    strength={8}
-                    onClick={scrollToJoin}
-                    className="px-8 py-4 text-sm uppercase tracking-wider font-bold shadow-xl shadow-[#FF5A7A]/25"
-                  >
-                    <Sparkles className="w-4 h-4" />
-                    {activeConfig.cta}
-                    <ArrowRight className="w-4 h-4" />
-                  </MagneticButton>
-
-                  <a
-                    href="#dilemma-deck"
-                    className="px-5 py-3.5 text-xs font-semibold text-[#B8AEB6] hover:text-[#F5EFE8] transition-colors"
-                  >
-                    Swipe live scenarios →
-                  </a>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Grounded Credibility Strip (Zero Fake Percentages) */}
-            <div className="pt-6 border-t border-[#2E2433] w-full flex flex-wrap items-center gap-8 text-xs font-medium text-[#B8AEB6]">
-              <div className="flex items-center gap-3">
-                <div className="flex -space-x-2 overflow-hidden">
-                  <div className="inline-block h-8 w-8 rounded-full ring-2 ring-[#100C12] bg-[#241C29] text-[#F5EFE8] text-[11px] font-bold flex items-center justify-center border border-[#2E2433]">
-                    ER
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
+                    <Image
+                      src="/images/nigerian_woman_radiant.jpg"
+                      alt="Amina profile avatar"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                  <div className="inline-block h-8 w-8 rounded-full ring-2 ring-[#100C12] bg-[#FF5A7A] text-[#100C12] text-[11px] font-bold flex items-center justify-center">
-                    MK
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
+                    <Image
+                      src="/images/maya_asian_woman.png"
+                      alt="Maya profile avatar"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                  <div className="inline-block h-8 w-8 rounded-full ring-2 ring-[#100C12] bg-[#FFB36B] text-[#100C12] text-[11px] font-bold flex items-center justify-center">
-                    SL
+                  <div className="relative w-11 h-11 rounded-full overflow-hidden ring-2 ring-white shadow-sm">
+                    <Image
+                      src="/images/david_architect_man.png"
+                      alt="David profile avatar"
+                      fill
+                      className="object-cover"
+                    />
                   </div>
                 </div>
                 <div>
-                  <div className="font-bold text-[#F5EFE8] text-sm">8,400+ Active Members</div>
-                  <span>Vetted adults ages 25–60</span>
+                  <div className="text-base font-extrabold text-[#1C1B1B]">12,600+ Vetted Members</div>
+                  <div className="text-xs text-[#68645E]">Lagos • London • NYC • Atlanta • Paris</div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-2 text-[#FFB36B] font-semibold">
-                <ShieldCheck className="w-4 h-4" />
-                <span>Explicit Mutual Respect</span>
+              <div className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#E8F5E9] text-[#2D6A4F] text-xs font-extrabold">
+                <CheckCircle2 className="w-4 h-4" />
+                <span>Zero Ghosting Charter</span>
               </div>
             </div>
           </div>
 
-          {/* Right Column: Tactile Swipe Deck Live Above the Fold */}
-          <div
-            id="dilemma-deck"
-            className="lg:col-span-6 relative flex flex-col justify-center items-center pt-4 lg:pt-0"
-          >
-            <div className="w-full max-w-[420px] relative">
-              {/* Subtle Ambient Radial Highlight behind deck */}
-              <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,90,122,0.12)_0%,rgba(255,179,107,0.05)_50%,transparent_75%)] blur-2xl pointer-events-none" />
+          {/* Right: 3D Perspective Card Stack (LazyInterface Style with Spring Tilt) */}
+          <div className="lg:col-span-6 2xl:col-span-6 relative flex justify-center lg:justify-end items-center py-4">
+            <CardTilt
+              maxTilt={7}
+              glareOpacity={0.12}
+              className="relative w-full max-w-[540px] 2xl:max-w-[620px]"
+            >
+              {/* Feature Hero Dating Card (Passionate Interracial Terrace Couple) */}
+              <div className="relative aspect-[4/5] w-full rounded-3xl overflow-hidden shadow-2xl bg-white border-4 border-white">
+                <Image
+                  src="/images/interracial_couple_terrace.jpg"
+                  alt="Attractive interracial couple laughing joyfully on rooftop terrace"
+                  fill
+                  priority
+                  className="object-cover"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/25 to-transparent pointer-events-none" />
 
-              {/* Directly Render the Interactive Card Stack Above the Fold */}
-              <CardStack cards={DILEMMA_CARDS} />
-            </div>
+                {/* Top Floating Match Pill */}
+                <div className="absolute top-4 left-4 right-4 p-3 rounded-2xl glass-pill shadow-lg flex items-center justify-between z-10">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-8 h-8 rounded-full flame-gradient flex items-center justify-center text-white shadow-sm">
+                      <Flame className="w-4 h-4" />
+                    </div>
+                    <div>
+                      <div className="text-xs font-black text-[#1C1B1B] leading-tight">
+                        Instant Magnetic Chemistry
+                      </div>
+                      <div className="text-[10px] font-semibold text-[#68645E]">
+                        Same-Night Clarity • Intent Aligned
+                      </div>
+                    </div>
+                  </div>
+                  <span className="px-2.5 py-1 rounded-full bg-[#2D6A4F] text-white text-[10.5px] font-bold flex items-center gap-1 shadow-sm">
+                    <span className="w-1.5 h-1.5 rounded-full bg-white animate-pulse" />
+                    98% Compatibility
+                  </span>
+                </div>
+
+                {/* Action Feedback Overlay */}
+                {matchActionState !== "neutral" && (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0 }}
+                    className={`absolute inset-0 flex items-center justify-center z-20 backdrop-blur-xs ${
+                      matchActionState === "liked" ? "bg-[#FF5A60]/30" : "bg-black/40"
+                    }`}
+                  >
+                    <div className="px-6 py-3 rounded-2xl bg-white text-[#1C1B1B] font-extrabold text-lg shadow-2xl flex items-center gap-2">
+                      {matchActionState === "liked" ? (
+                        <>
+                          <Heart className="w-6 h-6 text-[#FF5A60] fill-[#FF5A60]" />
+                          <span>Mutual Spark Verified!</span>
+                        </>
+                      ) : (
+                        <>
+                          <X className="w-6 h-6 text-[#BA1A1A]" />
+                          <span>Passed with Respect</span>
+                        </>
+                      )}
+                    </div>
+                  </motion.div>
+                )}
+
+                {/* Bottom Profile Details & Interactive Action Pill Bar */}
+                <div className="absolute bottom-4 left-4 right-4 text-white z-10">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="px-2.5 py-0.5 rounded-full bg-[#FF5A60] text-white text-[10.5px] font-extrabold uppercase tracking-wider">
+                      Match Archetype
+                    </span>
+                    <span className="px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-white text-[10.5px] font-semibold">
+                      Boundary Verified
+                    </span>
+                  </div>
+
+                  <blockquote className="text-base sm:text-lg font-bold leading-snug mb-3 drop-shadow-sm">
+                    “The hottest thing in the room was knowing exactly what we both wanted before we even touched.”
+                  </blockquote>
+
+                  {/* Tactile Action Triggers */}
+                  <div className="pt-3 border-t border-white/20 flex items-center justify-between">
+                    <div className="text-xs text-white/90 font-medium flex items-center gap-1.5">
+                      <Bolt className="w-4 h-4 text-[#FFC629]" />
+                      <span>Sovereign Sexual Pacing</span>
+                    </div>
+
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={() => triggerMatchAction("passed")}
+                        className="w-9 h-9 rounded-full bg-white/20 hover:bg-white/40 flex items-center justify-center text-white transition-all cursor-pointer active:scale-90"
+                        title="Pass"
+                        aria-label="Pass on match"
+                      >
+                        <X className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => triggerMatchAction("liked")}
+                        className="w-10 h-10 rounded-full flame-gradient text-white flex items-center justify-center shadow-lg hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                        title="Super Match"
+                        aria-label="Super Match"
+                      >
+                        <Heart className="w-5 h-5 fill-white" />
+                      </button>
+                      <button
+                        onClick={() => scrollToSection("join-cohort")}
+                        className="w-9 h-9 rounded-full bg-[#FFC629] text-[#1C1B1B] flex items-center justify-center font-bold hover:scale-105 active:scale-95 transition-all cursor-pointer"
+                        title="Direct Clarity Message"
+                        aria-label="Send direct message"
+                      >
+                        <MessageCircle className="w-4 h-4" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Floating Profile Badge 1: Amina (Nigerian International Dater) */}
+              <motion.div
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3 }}
+                className="absolute -bottom-6 -left-3 sm:-left-6 z-20 w-64 p-3.5 rounded-2xl bg-white shadow-xl border border-[#E7E2DA]"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 ring-2 ring-[#FF5A60]">
+                    <Image
+                      src="/images/nigerian_woman_radiant.jpg"
+                      alt="Amina profile"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1 text-sm font-extrabold text-[#1C1B1B] truncate">
+                      Amina, 33
+                      <Check className="w-3.5 h-3.5 text-[#2D6A4F] stroke-[3]" />
+                    </div>
+                    <div className="text-[11px] text-[#68645E] truncate">Global Health • Lagos / London</div>
+                    <span className="inline-block px-2 py-0.5 mt-0.5 rounded-full bg-[#E8F5E9] text-[#2D6A4F] text-[9.5px] font-bold">
+                      Attachment: Secure
+                    </span>
+                  </div>
+                </div>
+                <div className="mt-2 text-[10.5px] text-[#4F4633] bg-[#F3EFEA] p-2 rounded-lg italic leading-snug">
+                  “My repair prompt: If friction sparks, we talk with empathy before defensiveness.”
+                </div>
+              </motion.div>
+
+              {/* Floating Profile Badge 2: Tunde (Nigerian Tech Founder) */}
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4 }}
+                className="absolute -top-6 -right-3 sm:-right-6 z-20 w-64 p-3.5 rounded-2xl bg-white shadow-xl border border-[#E7E2DA]"
+              >
+                <div className="flex items-center gap-2.5">
+                  <div className="relative w-12 h-12 rounded-xl overflow-hidden shrink-0 ring-2 ring-[#FFA41C]">
+                    <Image
+                      src="/images/nigerian_man_lagos.jpg"
+                      alt="Tunde profile"
+                      fill
+                      className="object-cover"
+                    />
+                  </div>
+                  <div className="min-w-0">
+                    <div className="flex items-center gap-1 text-sm font-extrabold text-[#1C1B1B] truncate">
+                      Tunde, 37
+                      <Check className="w-3.5 h-3.5 text-[#FFA41C] stroke-[3]" />
+                    </div>
+                    <div className="text-[11px] text-[#68645E] truncate">Founder &amp; Investor • Lagos / NYC</div>
+                    <span className="inline-block px-2 py-0.5 mt-0.5 rounded-full bg-[#FF5A60]/10 text-[#FF5A60] text-[9.5px] font-bold">
+                      Intent: Sovereign Devotion
+                    </span>
+                  </div>
+                </div>
+                <div className="mt-2 text-[10.5px] text-[#4F4633] bg-[#F3EFEA] p-2 rounded-lg italic leading-snug">
+                  “Seeking: Unvarnished honesty, playful spontaneity, and emotional groundedness.”
+                </div>
+              </motion.div>
+            </CardTilt>
           </div>
         </div>
       </div>
