@@ -47,19 +47,19 @@ export function MagneticButton({
     setPosition({ x: 0, y: 0 });
   };
 
-  // Base aesthetic styles adhering strictly to design tokens
-  let variantStyles = "bg-neutral-900 text-white hover:bg-neutral-800 shadow-sm";
+  // Base aesthetic styles adhering strictly to dark warm human design tokens
+  let variantStyles = "bg-[#1A141D] text-[#F5EFE8] hover:bg-[#241C29] border border-[#2E2433]";
   if (variant === "primary") {
     variantStyles =
-      "bg-gradient-to-r from-[#FF5A5F] to-[#FF7E40] text-white shadow-md shadow-[#FF5A5F]/20 hover:shadow-lg hover:shadow-[#FF5A5F]/30";
+      "bg-[#FF5A7A] hover:bg-[#ff4367] text-[#100C12] font-bold shadow-lg shadow-[#FF5A7A]/25 hover:shadow-[#FF5A7A]/40 transition-all";
   } else if (variant === "secondary") {
     variantStyles =
-      "bg-[#2A4B43] text-white shadow-sm hover:bg-[#345c52] shadow-[#2A4B43]/20";
+      "bg-[#FFB36B] hover:bg-[#ffa34d] text-[#100C12] font-bold shadow-md shadow-[#FFB36B]/20";
   } else if (variant === "outline") {
     variantStyles =
-      "bg-white/80 backdrop-blur-md text-[#121316] border border-black/10 hover:border-black/20 hover:bg-white";
+      "bg-[#1A141D]/90 backdrop-blur-md text-[#F5EFE8] border border-[#2E2433] hover:border-[#FF5A7A]/50 hover:bg-[#241C29] transition-all";
   } else if (variant === "ghost") {
-    variantStyles = "bg-transparent text-[#121316] hover:bg-black/5";
+    variantStyles = "bg-transparent text-[#B8AEB6] hover:text-[#F5EFE8] hover:bg-white/5";
   }
 
   return (
@@ -71,7 +71,7 @@ export function MagneticButton({
       animate={{ x: position.x, y: position.y }}
       transition={{ type: "spring", stiffness: 350, damping: 25, mass: 0.5 }}
       whileTap={{ scale: 0.96 }}
-      className={`relative inline-flex items-center justify-center font-medium rounded-full transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#FF5A5F] focus-visible:ring-offset-2 ${variantStyles} ${className}`}
+      className={`relative inline-flex items-center justify-center font-medium rounded-full cursor-pointer transition-colors duration-200 outline-none focus-visible:ring-2 focus-visible:ring-[#FF5A7A] focus-visible:ring-offset-2 focus-visible:ring-offset-[#100C12] min-h-[44px] ${variantStyles} ${className}`}
       {...(props as any)}
     >
       <span className="relative z-10 flex items-center gap-2">

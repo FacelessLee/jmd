@@ -21,13 +21,12 @@ export function BentoCard({
   enableTilt = true,
 }: BentoCardProps) {
   const cardRef = useRef<HTMLDivElement>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
   const [tilt, setTilt] = useState({ rotateX: 0, rotateY: 0 });
   const [isHovered, setIsHovered] = useState(false);
   const [canTilt, setCanTilt] = useState(false);
 
   useEffect(() => {
-    // Only enable 3D tilt if the user has a fine pointing device (mouse/trackpad) and hasn't requested reduced motion
+    // Only enable 3D tilt on fine-pointer devices without reduced motion
     const hasFinePointer = window.matchMedia("(pointer: fine)").matches;
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     setCanTilt(hasFinePointer && !prefersReducedMotion && enableTilt);
@@ -39,8 +38,6 @@ export function BentoCard({
     const x = e.clientX - rect.left;
     const y = e.clientY - rect.top;
 
-    setMousePos({ x, y });
-
     // Set local CSS variables for CSS-level radial gradient masks
     cardRef.current.style.setProperty("--mouse-x", `${x}px`);
     cardRef.current.style.setProperty("--mouse-y", `${y}px`);
@@ -48,8 +45,7 @@ export function BentoCard({
     if (canTilt) {
       const centerX = rect.width / 2;
       const centerY = rect.height / 2;
-      // Max tilt degrees: ~6deg for subtle high-craft aesthetic without nausea
-      const maxTilt = 5.5;
+      const maxTilt = 5;
       const rotateX = -((y - centerY) / centerY) * maxTilt;
       const rotateY = ((x - centerX) / centerX) * maxTilt;
       setTilt({ rotateX, rotateY });
@@ -74,7 +70,7 @@ export function BentoCard({
       animate={{
         rotateX: tilt.rotateX,
         rotateY: tilt.rotateY,
-        scale: isHovered && canTilt ? 1.008 : 1,
+        scale: isHovered && canTilt ? 1.01 : 1,
       }}
       transition={{
         type: "spring",
@@ -86,22 +82,22 @@ export function BentoCard({
         transformStyle: "preserve-3d",
         perspective: 1000,
       }}
-      className={`group relative rounded-3xl bg-white border border-[#121316]/[0.08] shadow-[0_8px_30px_rgb(0,0,0,0.04)] overflow-hidden transition-shadow duration-300 hover:shadow-[0_20px_40px_rgba(0,0,0,0.08)] ${className}`}
+      className={`group relative rounded-3xl bg-[#1A141D] border border-[#2E2433] shadow-[0_12px_36px_rgba(0,0,0,0.35)] overflow-hidden transition-all duration-300 hover:border-[#FF5A7A]/35 hover:shadow-[0_20px_45px_rgba(255,90,122,0.08)] ${className}`}
     >
-      {/* Spotlight Radial Glow Shader (LazyInterface Cue) */}
+      {/* Spotlight Radial Glow Shader */}
       <div
         className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10"
         style={{
-          background: `radial-gradient(420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 90, 95, 0.12), rgba(42, 75, 67, 0.05) 50%, transparent 80%)`,
+          background: `radial-gradient(420px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 90, 122, 0.12), rgba(255, 179, 107, 0.05) 50%, transparent 80%)`,
         }}
       />
 
-      {/* Border Highlight Beam (LazyInterface Precision Border Glow) */}
+      {/* Border Highlight Beam */}
       <div
         className="pointer-events-none absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-20"
         style={{
           border: "1.5px solid transparent",
-          backgroundImage: `radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 90, 95, 0.5), transparent 70%)`,
+          backgroundImage: `radial-gradient(220px circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(255, 90, 122, 0.45), transparent 70%)`,
           WebkitMask:
             "linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0)",
           WebkitMaskComposite: "xor",
@@ -110,22 +106,22 @@ export function BentoCard({
       />
 
       {/* Internal Content Container */}
-      <div className="relative z-20 p-8 h-full flex flex-col justify-between">
+      <div className="relative z-20 p-7 sm:p-8 h-full flex flex-col justify-between">
         {(badge || title || subtitle) && (
           <div className="mb-6">
             {badge && (
-              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#2A4B43]/10 text-[#2A4B43] mb-3">
-                <span className="w-1.5 h-1.5 rounded-full bg-[#2A4B43]" />
+              <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-semibold bg-[#241C29] border border-[#2E2433] text-[#FFB36B] mb-3">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#FF5A7A]" />
                 {badge}
               </span>
             )}
             {title && (
-              <h3 className="text-xl font-bold text-[#121316] tracking-tight mb-2">
+              <h3 className="text-xl sm:text-2xl font-bold text-[#F5EFE8] tracking-tight mb-2">
                 {title}
               </h3>
             )}
             {subtitle && (
-              <p className="text-sm text-[#5B616E] leading-relaxed">
+              <p className="text-sm text-[#B8AEB6] leading-relaxed">
                 {subtitle}
               </p>
             )}

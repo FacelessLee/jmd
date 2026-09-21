@@ -1,18 +1,18 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { QUIZ_QUESTIONS, SUPERPOWER_PROFILES } from "@/lib/quiz-data";
 import { SuperpowerProfile } from "@/lib/types";
+import { INTENTS, IntentKey } from "@/lib/intents";
 import { InteractiveGauge } from "@/components/ui/interactive-gauge";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import {
   Sparkles,
   ArrowRight,
   RotateCcw,
-  ShieldCheck,
-  Award,
   CheckCircle2,
+  Award,
 } from "lucide-react";
 
 export function MaturityMetricSection() {
@@ -25,7 +25,24 @@ export function MaturityMetricSection() {
     boundaryArchitect: 0,
   });
   const [resultProfile, setResultProfile] = useState<SuperpowerProfile | null>(null);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [currentIntent, setCurrentIntent] = useState<IntentKey>("serious_relationship");
+
+  useEffect(() => {
+    const saved = localStorage.getItem("jmm_intent") as IntentKey;
+    if (saved && INTENTS[saved]) {
+      setCurrentIntent(saved);
+    }
+
+    const handleIntentChange = (e: Event) => {
+      const customEvent = e as CustomEvent<IntentKey>;
+      if (customEvent.detail && INTENTS[customEvent.detail]) {
+        setCurrentIntent(customEvent.detail);
+      }
+    };
+
+    window.addEventListener("intent_change", handleIntentChange);
+    return () => window.removeEventListener("intent_change", handleIntentChange);
+  }, []);
 
   const activeQuestion = QUIZ_QUESTIONS[currentStep];
 
@@ -52,9 +69,6 @@ export function MaturityMetricSection() {
     weights: typeof accumulatedWeights,
     answers: Record<number, string>
   ) => {
-    setIsSubmitting(true);
-
-    // Identify highest weighting
     let topProfileKey = "groundedAnchor";
     let maxVal = -1;
 
@@ -68,7 +82,6 @@ export function MaturityMetricSection() {
     const matchedProfile = SUPERPOWER_PROFILES[topProfileKey] || SUPERPOWER_PROFILES.groundedAnchor;
     setResultProfile(matchedProfile);
 
-    // Send to Supabase API
     try {
       await fetch("/api/quiz", {
         method: "POST",
@@ -85,8 +98,6 @@ export function MaturityMetricSection() {
       });
     } catch (err) {
       console.error("Failed to post quiz data:", err);
-    } finally {
-      setIsSubmitting(false);
     }
   };
 
@@ -102,30 +113,38 @@ export function MaturityMetricSection() {
     setResultProfile(null);
   };
 
+  const activeIntentConfig = INTENTS[currentIntent];
+
   return (
     <section
       id="maturity-metric"
-      className="py-24 md:py-32 bg-white border-t border-black/5 relative overflow-hidden"
+      className="py-20 md:py-32 bg-[#100C12] border-t border-[#2E2433] relative overflow-hidden"
     >
-      <div className="max-w-5xl mx-auto px-6 md:px-10">
-        {/* Section Title */}
-        <div className="text-center max-w-2xl mx-auto mb-14 space-y-3">
-          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#FF5A5F]/10 text-[#FF5A5F] text-xs font-bold uppercase tracking-wider">
+      <div className="max-w-5xl mx-auto px-6 md:px-10 relative z-10">
+        {/* Section Title with Scroll Reveal */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5 }}
+          className="text-center max-w-2xl mx-auto mb-14 space-y-3"
+        >
+          <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-[#241C29] border border-[#2E2433] text-[#FF5A7A] text-xs font-semibold uppercase tracking-wider">
             <Award className="w-3.5 h-3.5" />
             <span>Maturity Metric Evaluation</span>
           </div>
 
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-[#121316] tracking-tight">
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#F5EFE8] tracking-tight">
             Discover Your Relational Superpower
           </h2>
 
-          <p className="text-base text-[#5B616E] leading-relaxed">
+          <p className="text-base text-[#B8AEB6] leading-relaxed">
             3 rapid scenario prompts to assess your emotional regulation, boundary architecture, and repair capability.
           </p>
-        </div>
+        </motion.div>
 
         {/* Assessment Card Container */}
-        <div className="rounded-3xl bg-[#FBF9F5] border border-black/[0.08] shadow-[0_12px_40px_rgba(0,0,0,0.04)] p-8 sm:p-12 relative overflow-hidden">
+        <div className="rounded-3xl bg-[#1A141D] border border-[#2E2433] shadow-[0_16px_45px_rgba(0,0,0,0.4)] p-7 sm:p-12 relative overflow-hidden">
           <AnimatePresence mode="wait">
             {!resultProfile ? (
               <motion.div
@@ -134,7 +153,7 @@ export function MaturityMetricSection() {
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.35, ease: [0.16, 1, 0.3, 1] }}
-                className="space-y-8"
+                className="space-y-7"
               >
                 {/* Step Progress Indicator */}
                 <div className="flex items-center justify-between">
@@ -144,25 +163,25 @@ export function MaturityMetricSection() {
                         key={idx}
                         className={`h-2 rounded-full transition-all duration-300 ${
                           idx === currentStep
-                            ? "w-8 bg-[#2A4B43]"
+                            ? "w-8 bg-[#FF5A7A]"
                             : idx < currentStep
-                            ? "w-4 bg-[#2A4B43]/50"
-                            : "w-4 bg-neutral-200"
+                            ? "w-4 bg-[#FFB36B]"
+                            : "w-4 bg-[#2E2433]"
                         }`}
                       />
                     ))}
                   </div>
-                  <span className="text-xs font-mono font-bold text-[#5B616E]">
+                  <span className="text-xs font-mono font-bold text-[#B8AEB6]">
                     Prompt 0{currentStep + 1} of 0{QUIZ_QUESTIONS.length}
                   </span>
                 </div>
 
                 {/* Scenario Context & Question */}
                 <div className="space-y-2">
-                  <span className="text-xs font-bold uppercase tracking-widest text-[#2A4B43]">
+                  <span className="text-xs font-semibold uppercase tracking-widest text-[#FFB36B]">
                     {activeQuestion.scenarioContext}
                   </span>
-                  <h3 className="text-xl sm:text-2xl font-bold text-[#121316] leading-snug">
+                  <h3 className="text-xl sm:text-2xl font-bold text-[#F5EFE8] leading-snug">
                     {activeQuestion.question}
                   </h3>
                 </div>
@@ -173,18 +192,18 @@ export function MaturityMetricSection() {
                     <button
                       key={option.id}
                       onClick={() => handleSelectOption(option)}
-                      className="group p-5 rounded-2xl bg-white border border-black/5 text-left transition-all duration-200 hover:border-[#2A4B43]/40 hover:shadow-md hover:scale-[1.01] active:scale-[0.99] flex flex-col justify-between"
+                      className="group p-5 rounded-2xl bg-[#241C29] border border-[#2E2433] text-left transition-all duration-200 hover:border-[#FF5A7A]/50 hover:shadow-lg hover:shadow-[#FF5A7A]/10 hover:scale-[1.01] active:scale-[0.99] flex flex-col justify-between cursor-pointer"
                     >
                       <div className="mb-3">
-                        <span className="inline-block px-2.5 py-1 rounded-full text-[11px] font-semibold bg-[#2A4B43]/10 text-[#2A4B43] mb-2">
+                        <span className="inline-block px-2.5 py-0.5 rounded-full text-[11px] font-semibold bg-[#100C12] border border-[#2E2433] text-[#FFB36B] mb-2">
                           {option.badge}
                         </span>
-                        <p className="text-sm font-medium text-[#121316] leading-relaxed">
+                        <p className="text-sm font-medium text-[#F5EFE8] leading-relaxed">
                           {option.text}
                         </p>
                       </div>
 
-                      <div className="flex items-center text-xs font-semibold text-[#5B616E] group-hover:text-[#2A4B43] transition-colors gap-1 pt-2">
+                      <div className="flex items-center text-xs font-semibold text-[#B8AEB6] group-hover:text-[#FF5A7A] transition-colors gap-1 pt-2">
                         <span>Select response</span>
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
                       </div>
@@ -201,14 +220,14 @@ export function MaturityMetricSection() {
                 className="space-y-8"
               >
                 <div className="text-center space-y-2">
-                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-[#2A4B43]/10 text-[#2A4B43] uppercase tracking-wider">
+                  <span className="inline-flex items-center gap-1 px-3 py-1 rounded-full text-xs font-bold bg-[#241C29] border border-[#2E2433] text-[#FFB36B] uppercase tracking-wider">
                     <Sparkles className="w-3.5 h-3.5" />
                     Archetype Profile Generated
                   </span>
-                  <h3 className="text-3xl font-extrabold text-[#121316]">
+                  <h3 className="text-3xl font-extrabold text-[#F5EFE8]">
                     {resultProfile.title}
                   </h3>
-                  <p className="text-sm font-medium text-[#5B616E]">
+                  <p className="text-sm font-medium text-[#B8AEB6]">
                     {resultProfile.subtitle}
                   </p>
                 </div>
@@ -225,26 +244,26 @@ export function MaturityMetricSection() {
 
                   {/* Right: Archetype Insights */}
                   <div className="md:col-span-7 space-y-4">
-                    <p className="text-sm text-[#121316] leading-relaxed">
+                    <p className="text-sm text-[#F5EFE8] leading-relaxed">
                       {resultProfile.description}
                     </p>
 
                     <div className="space-y-2">
-                      <span className="text-xs font-bold uppercase tracking-wider text-[#2A4B43]">
+                      <span className="text-xs font-bold uppercase tracking-wider text-[#FFB36B]">
                         Core Superpower Strengths:
                       </span>
-                      <ul className="space-y-1.5 text-xs text-[#5B616E]">
+                      <ul className="space-y-1.5 text-xs text-[#B8AEB6]">
                         {resultProfile.strengths.map((str, idx) => (
                           <li key={idx} className="flex items-start gap-2">
-                            <CheckCircle2 className="w-4 h-4 text-[#2A4B43] shrink-0 mt-0.5" />
+                            <CheckCircle2 className="w-4 h-4 text-[#FF5A7A] shrink-0 mt-0.5" />
                             <span>{str}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
 
-                    <div className="p-3.5 rounded-xl bg-white border border-black/5 text-xs text-[#5B616E]">
-                      <strong className="text-[#121316] block mb-0.5">
+                    <div className="p-3.5 rounded-xl bg-[#241C29] border border-[#2E2433] text-xs text-[#B8AEB6]">
+                      <strong className="text-[#F5EFE8] block mb-0.5">
                         Growth Edge:
                       </strong>
                       {resultProfile.growthEdge}
@@ -252,14 +271,14 @@ export function MaturityMetricSection() {
                   </div>
                 </div>
 
-                {/* Footer Controls */}
-                <div className="pt-6 border-t border-black/10 flex flex-wrap items-center justify-between gap-4">
+                {/* Footer Controls with Tailored Intent CTA */}
+                <div className="pt-6 border-t border-[#2E2433] flex flex-wrap items-center justify-between gap-4">
                   <button
                     onClick={handleRestart}
-                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#5B616E] hover:text-[#121316] transition-colors"
+                    className="inline-flex items-center gap-1.5 text-xs font-semibold text-[#B8AEB6] hover:text-[#F5EFE8] transition-colors cursor-pointer"
                   >
                     <RotateCcw className="w-3.5 h-3.5" />
-                    Retake Assessment
+                    Retake assessment
                   </button>
 
                   <MagneticButton
@@ -267,9 +286,9 @@ export function MaturityMetricSection() {
                     onClick={() => {
                       document.getElementById("join-circle")?.scrollIntoView({ behavior: "smooth" });
                     }}
-                    className="px-6 py-2.5 text-xs uppercase font-bold tracking-wider"
+                    className="px-6 py-3 text-xs uppercase font-bold tracking-wider"
                   >
-                    Lock In Your Archetype & Join
+                    Lock In Archetype & {activeIntentConfig.cta}
                   </MagneticButton>
                 </div>
               </motion.div>

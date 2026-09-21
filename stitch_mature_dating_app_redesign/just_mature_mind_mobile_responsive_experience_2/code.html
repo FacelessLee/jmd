@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+
+<html class="h-full" lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" name="viewport"/><meta content="mobile_tab" name="shell-type"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><script src="https://cdn.tailwindcss.com"></script><script id="tailwind-config">tailwind.config = { darkMode: "class", theme: { extend: { colors: { "primary-fixed-dim": "#f6be1f", "dilemma-rose": "#FFEFEF", "surface-container-lowest": "#ffffff", "primary-fixed": "#ffdf9a", "surface-container-high": "#eae7e7", "tertiary": "#39665e", "surface-dim": "#dcd9d9", "tertiary-container": "#a8d8cd", "on-background": "#1c1b1b", "primary-container": "#ffc629", "inverse-surface": "#313030", "on-surface": "#1c1b1b", "surface-container": "#f0eded", "on-tertiary-fixed-variant": "#1f4e46", "on-primary-container": "#6f5300", "on-primary-fixed": "#251a00", "error-container": "#ffdad6", "on-primary": "#ffffff", "growth-sage": "#2D6A4F", "error": "#ba1a1a", "on-secondary-fixed-variant": "#92001b", "surface-container-highest": "#e5e2e1", "surface-tint": "#785a00", "on-secondary": "#ffffff", "surface-subtle": "#F3EFEA", "tertiary-fixed": "#bcece1", "inverse-on-surface": "#f3f0ef", "secondary-fixed-dim": "#ffb3b0", "secondary-container": "#ff5a5f", "on-error-container": "#93000a", "on-surface-variant": "#4f4633", "background": "#fcf9f8", "secondary-fixed": "#ffdad8", "surface": "#fcf9f8", "on-error": "#ffffff", "outline-variant": "#d3c5ac", "muted-caption": "#68645E", "primary": "#785a00", "on-primary-fixed-variant": "#5a4300", "tertiary-fixed-dim": "#a0d0c5", "secondary": "#b52330", "surface-bright": "#fcf9f8", "outline": "#817660", "surface-container-low": "#f6f3f2", "surface-variant": "#e5e2e1", "on-tertiary-container": "#326057", "on-tertiary": "#ffffff", "border-subtle": "#E7E2DA", "inverse-primary": "#f6be1f", "on-secondary-fixed": "#410007", "on-secondary-container": "#60000e", "growth-sage-soft": "#E8F5E9", "surface-cream": "#FAF8F5", "on-tertiary-fixed": "#00201b" }, borderRadius: { "DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px" }, spacing: { "space-lg": "1.5rem", "space-xl": "2.5rem", "space-sm": "0.5rem", "space-xs": "0.25rem", "gutter": "1.25rem", "margin-desktop": "3rem", "space-md": "1rem", "margin": "1rem", "gutter-desktop": "2rem", "margin-tablet": "2rem", "gutter-tablet": "1.5rem" }, fontFamily: { "headline-md": ["Plus Jakarta Sans"], "headline-sm": ["Plus Jakarta Sans"], "label-lg": ["Plus Jakarta Sans"], "label-sm": ["Plus Jakarta Sans"], "display-lg-mobile": ["Plus Jakarta Sans"], "label-md": ["Plus Jakarta Sans"], "body-md": ["Plus Jakarta Sans"], "body-sm": ["Plus Jakarta Sans"], "headline-lg": ["Plus Jakarta Sans"], "display-lg": ["Plus Jakarta Sans"], "body-lg": ["Plus Jakarta Sans"], "display-xl": ["Plus Jakarta Sans"], "display-xl-mobile": ["Plus Jakarta Sans"] }, fontSize: { "headline-md": ["24px", { lineHeight: "32px", letterSpacing: "-0.01em", fontWeight: "700" }], "headline-sm": ["20px", { lineHeight: "28px", fontWeight: "600" }], "label-lg": ["14px", { lineHeight: "20px", letterSpacing: "0.02em", fontWeight: "600" }], "label-sm": ["11px", { lineHeight: "14px", letterSpacing: "0.06em", fontWeight: "700" }], "display-lg-mobile": ["32px", { lineHeight: "38px", letterSpacing: "-0.02em", fontWeight: "700" }], "label-md": ["12px", { lineHeight: "16px", letterSpacing: "0.04em", fontWeight: "600" }], "body-md": ["15px", { lineHeight: "24px", fontWeight: "400" }], "body-sm": ["13px", { lineHeight: "20px", fontWeight: "400" }], "headline-lg": ["32px", { lineHeight: "40px", letterSpacing: "-0.015em", fontWeight: "700" }], "display-lg": ["44px", { lineHeight: "52px", letterSpacing: "-0.02em", fontWeight: "700" }], "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }], "display-xl": ["56px", { lineHeight: "64px", letterSpacing: "-0.03em", fontWeight: "800" }], "display-xl-mobile": ["38px", { lineHeight: "44px", letterSpacing: "-0.025em", fontWeight: "800" }] } } } };</script><style>@layer base { html, body { width: 100%; margin: 0; padding: 0; background-color: #fcf9f8; } .pb-safe { padding-bottom: env(safe-area-inset-bottom, 0px); } .pt-safe { padding-top: env(safe-area-inset-top, 0px); } } ::-webkit-scrollbar { display: none; }</style></head><body class="bg-surface text-on-surface antialiased selection:bg-primary-fixed"><header class="fixed top-0 w-full z-50 pt-safe bg-surface/85 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.03)]"><div class="h-16 px-gutter flex items-center justify-between"><div class="flex items-center gap-space-sm"><img alt="Brand logo. - Primary color: #ffc629
+- Font: plusJakartaSans
+- Mode: light
+- Roundness: rounded-full
+" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida/AEtjO1W5EJiErDKN7E-r9vcv5ZemQ--uS1FXDtWxnQoqPpaKfZQiGl9iEDizTI0Gwz48FN4vxvc-CIWxqpPQHI2Og_U2bx8H9u7H3G8qI6hqy4H4gl4iIV1PkHc-Am3OwtqcX2-38b3ZA_0S7NHl1p5fMmtA1HbQXWarVOI7Si6eGMi55ue9A8zP9QFR0L0YcpmJqqoq3n0XLLfZv8PsuEJ28FykvQ65GfWgWvOLlLxizBdRQVrG4gdqkoefmA"/><div class="flex flex-col"><span class="font-label-md text-label-md text-on-surface tracking-tight leading-none font-bold">Just Mature Mind</span><div class="flex items-center gap-1 mt-0.5"><span class="w-1.5 h-1.5 rounded-full bg-growth-sage inline-block animate-pulse"></span><span class="font-label-sm text-[10px] text-growth-sage uppercase tracking-wider">High-EQ Intent</span></div></div></div><div class="flex items-center gap-space-sm"><div class="hidden xs:flex flex-col items-end text-right"><span class="font-label-sm text-label-sm text-muted-caption">Discover Spark</span></div><button class="min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full active:scale-95 transition-transform" type="button"><img alt="Profile" class="w-8 h-8 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1VC3CvtOPEQv1NQWJyf9wzUOoQenjhdAhkCLZ2LfyNJNxpXKWh0kLMns_oT2ZquNaeDMWk0Y2RqydwjI-6sJ37G83zbcj4bPCMu6wagfGA0jbfyxzuQAPaT_P_UvSLPG8B8N9yTYoDTtFHYHemN1R9UhKS3SJ0mtklrHSSEWvWs_uoL7CiFqMQxtMksn6tNgwOuvCUqWNRx4zig9t_bnC6fMB660Kt0q6FhJdkxiY8dfZzRwd57e4Pywko"/></button></div></div></header><main class="relative w-full pt-16 pb-24 bg-surface min-h-screen flex flex-col"><div class="flex flex-col w-full text-on-surface">
+<!-- 1. TOP INTENT FILTER CHIPS (Horizontal Scrollable Strip) -->
+<section class="w-full pt-4 pb-2 px-margin">
+<div class="flex items-center justify-between mb-2.5">
+<div class="flex items-center gap-1.5">
+<span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span>
+<span class="font-label-sm text-label-sm text-muted-caption uppercase tracking-wider">Intent Engine</span>
+</div>
+<span class="font-label-sm text-label-sm px-2.5 py-0.5 rounded-full bg-primary-container/20 text-on-primary-container font-semibold">Zero Guesswork</span>
+</div>
+<div class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1 -mx-margin px-margin">
+<button class="shrink-0 flex items-center gap-1.5 px-4 h-9 rounded-full bg-on-surface text-surface-container-lowest font-label-md text-label-md shadow-sm transition-transform active:scale-95">
+<span>🔥</span>
+<span>Hookups (same-night clarity)</span>
+</button>
+<button class="shrink-0 flex items-center gap-1.5 px-4 h-9 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm transition-transform active:scale-95">
+<span>⚡</span>
+<span>Short-term fun</span>
+</button>
+<button class="shrink-0 flex items-center gap-1.5 px-4 h-9 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm transition-transform active:scale-95">
+<span>🌱</span>
+<span>Long-term fun</span>
+</button>
+<button class="shrink-0 flex items-center gap-1.5 px-4 h-9 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm transition-transform active:scale-95">
+<span>💍</span>
+<span>Serious relationship</span>
+</button>
+<button class="shrink-0 flex items-center gap-1.5 px-4 h-9 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm transition-transform active:scale-95">
+<span>✨</span>
+<span>Conscious marriage</span>
+</button>
+<button class="shrink-0 flex items-center gap-1.5 px-4 h-9 rounded-full bg-surface-container-lowest text-on-surface font-label-md text-label-md shadow-sm transition-transform active:scale-95">
+<span>📜</span>
+<span>No strings attached</span>
+</button>
+</div>
+</section>
+<!-- 2. HERO SECTION -->
+<section class="w-full px-margin pt-4 pb-6 flex flex-col items-center text-center">
+<div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-growth-sage-soft text-growth-sage mb-3.5">
+<span class="material-symbols-outlined text-[16px]">verified</span>
+<span class="font-label-sm text-label-sm uppercase tracking-wide">High-EQ Sovereignty</span>
+</div>
+<h1 class="font-display-xl-mobile text-display-xl-mobile text-on-surface font-extrabold tracking-tight mb-3">
+      Spicy Chemistry.<br/>
+<span class="text-secondary-container">Zero Mind Games.</span>
+</h1>
+<p class="font-body-md text-body-md text-muted-caption max-w-sm mb-6">
+      From uninhibited same-night chemistry to sovereign lifelong marriage. Experience the visual magnetic rush of Tinder &amp; Bumble — filtered through emotional regulation, attachment alignment, and upfront transparency.
+    </p>
+<div class="flex flex-col w-full gap-2.5 sm:max-w-xs">
+<a class="w-full h-12 flex items-center justify-center gap-2 rounded-full bg-secondary-container text-on-secondary font-label-lg text-label-lg shadow-md hover:opacity-95 active:scale-98 transition-all" href="#apply">
+<span>Enter Curated Circle</span>
+<span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+</a>
+<a class="w-full h-12 flex items-center justify-center rounded-full bg-surface-container text-on-surface font-label-lg text-label-lg active:scale-98 transition-all" href="#spectrum">
+        Explore The Spectrum
+      </a>
+</div>
+<!-- Trust Badge Strip -->
+<div class="flex items-center justify-center gap-4 mt-6 pt-4 w-full">
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-primary text-[18px]">groups</span>
+<span class="font-label-sm text-label-sm text-muted-caption font-bold">12,400+ Active Members</span>
+</div>
+<span class="w-1 h-1 rounded-full bg-outline-variant"></span>
+<div class="flex items-center gap-1.5">
+<span class="material-symbols-outlined text-growth-sage text-[18px]">format_image_left</span>
+<span class="font-label-sm text-label-sm text-muted-caption font-bold">Zero Ghosting Charter</span>
+</div>
+</div>
+</section>
+<!-- 3. MOBILE TACTILE MATCHMAKING HERO CARD STACK -->
+<section class="w-full px-margin pb-8 flex flex-col items-center">
+<div class="relative w-full max-w-sm rounded-lg overflow-hidden shadow-xl bg-surface-container-lowest">
+<!-- Card Media Image -->
+<div class="relative w-full h-[440px] bg-surface-dim">
+<img class="w-full h-full object-cover" data-alt="High quality realistic editorial candid photograph of a stylish attractive couple Elena 38 Creative Director and David 42 Architect laughing together intimately on a sun-drenched rooftop terrace at golden hour, amber glow, luxury warm lifestyle aesthetic, magnetic joyful connection" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBhfSXnA5ZSIZG_HDrkPGqcicqyaMLMLQvZGZ8Ar5zndBKDzkuxeKgPl4Jf5xrGW_ifgtDkNQ20nFMhBUJ_9klabFta3JiOzE0BaMASqGuDNn1-U4anEjL65pnYor5MuP9eark4NPAXWeE1EWgSH6XhTAhaBs66QkoK3U821MDrvXp0FE3suO2zieCSw5wmNEeAKegOBnJ8n-YtJrBkB4lmaXYjL656UnkxokkWAIxVRaHLgwLHkVKk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-inverse-surface via-inverse-surface/30 to-transparent"></div>
+<!-- Top Micro Tags -->
+<div class="absolute top-4 left-4 right-4 flex items-center justify-between">
+<span class="px-3 py-1 rounded-full bg-surface-container-lowest/90 backdrop-blur-md font-label-sm text-label-sm text-on-surface font-bold shadow-sm">
+            ✨ Instant Magnetic Chemistry
+          </span>
+<span class="px-2.5 py-1 rounded-full bg-growth-sage text-surface-container-lowest font-label-sm text-label-sm font-bold flex items-center gap-1 shadow-sm">
+<span class="material-symbols-outlined text-[13px]">tune</span> 98% Repair
+          </span>
+</div>
+<!-- Profile Narrative Layer -->
+<div class="absolute bottom-4 left-4 right-4 text-surface-container-lowest">
+<div class="flex items-baseline gap-2 mb-1">
+<h2 class="font-headline-md text-headline-md font-bold tracking-tight text-surface-container-lowest">David, 42 &amp; Elena, 38</h2>
+</div>
+<p class="font-label-md text-label-md text-surface-container-high/90 mb-2.5">
+            Architect &amp; Founder · Creative Director
+          </p>
+<!-- Prompt Box -->
+<div class="p-3 rounded bg-inverse-surface/80 backdrop-blur-md">
+<span class="font-label-sm text-[10px] text-primary-fixed uppercase tracking-wider block mb-1">Relational Agreement</span>
+<p class="font-body-sm text-body-sm italic text-surface-container-lowest leading-snug">
+              “The hottest thing in the room was knowing what we both wanted before we ordered drinks.”
+            </p>
+</div>
+</div>
+</div>
+<!-- Tactile Mobile Floating Action Bar -->
+<div class="p-4 bg-surface-container-lowest flex items-center justify-around gap-2">
+<!-- Pass / Red flag -->
+<button class="w-13 h-13 min-w-[52px] min-h-[52px] rounded-full bg-dilemma-rose text-secondary flex items-center justify-center shadow-md active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[26px]">close</span>
+</button>
+<!-- Super Spark / Boost -->
+<button class="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-primary-fixed text-on-primary-container flex items-center justify-center shadow-md active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[24px]">bolt</span>
+</button>
+<!-- Match / Connect -->
+<button class="w-14 h-14 min-w-[56px] min-h-[56px] rounded-full bg-secondary-container text-on-secondary flex items-center justify-center shadow-lg active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[28px]" style="font-variation-settings: 'FILL' 1;">favorite</span>
+</button>
+<!-- Direct Script / Prompt -->
+<button class="w-12 h-12 min-w-[48px] min-h-[48px] rounded-full bg-surface-container text-on-surface flex items-center justify-center shadow-md active:scale-90 transition-transform">
+<span class="material-symbols-outlined text-[22px]">chat_bubble</span>
+</button>
+</div>
+</div>
+</section>
+<!-- 4. EVERY TYPE OF SPARK. ONE STANDARD OF CONDUCT. -->
+<section class="w-full py-6 bg-surface-container-low" id="spectrum">
+<div class="px-margin mb-4">
+<div class="flex items-center gap-1.5 mb-1">
+<span class="material-symbols-outlined text-primary text-[18px]">flare</span>
+<span class="font-label-sm text-label-sm text-muted-caption uppercase tracking-wider">The Chemistry Spectrum</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">
+        Every Type of Spark. One Standard of Conduct.
+      </h2>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1">
+        Choose your altitude with radical clarity and mutual sovereignty.
+      </p>
+</div>
+<!-- Horizontal Swipeable Cohort Cards -->
+<div class="flex gap-4 overflow-x-auto no-scrollbar px-margin pb-2">
+<!-- Card 1: Festival Chemistry -->
+<div class="shrink-0 w-72 rounded-lg bg-surface-container-lowest overflow-hidden shadow-sm flex flex-col">
+<div class="relative h-44 w-full bg-surface-dim">
+<img class="w-full h-full object-cover" data-alt="Vibrant night market outdoors with colorful ambient hanging party lights where a radiant Asian woman laughs in a floral dress, drinking cocktails in a crowd, warm glowing nightlife photography" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfqs_gp_7uV6-EqYs66zCIOi32pVWWDdpgv-g9cGg5t0NCjnmDVFHZZB2dtbs-XNC1SmfltPlhBWFuXFfx7md5wX1xA98lN-MuhE-UKgHhhabBv5VlshjOP4t1xfWFfiixa3H9J6dinP5Nl7ty3CAivy56UPaKKgQQK672wJO-ay4TjL3n11A0P_lqAvpNyg1rtq4yZKQleHImLpeJ9Iv0NCbAFZi3S4jkcpMYgUEVOh1ADJusOKZP"/>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-inverse-surface/80 backdrop-blur-md text-surface-container-lowest font-label-sm text-label-sm font-semibold">
+            Festival Energy
+          </span>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">A Season, Not a Saga</h3>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1.5 leading-relaxed">
+              Spontaneous summer chemistry with adults who gracefully handle beginnings and endings with pure honesty.
+            </p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-muted-caption font-label-sm text-label-sm">
+<span>Attachment: Secure</span>
+<span class="font-bold text-secondary">Zero Guilt</span>
+</div>
+</div>
+</div>
+<!-- Card 2: Speakeasy Chemistry -->
+<div class="shrink-0 w-72 rounded-lg bg-surface-container-lowest overflow-hidden shadow-sm flex flex-col">
+<div class="relative h-44 w-full bg-surface-dim">
+<img class="w-full h-full object-cover" data-alt="Chic elegant dimly lit velvet cocktail lounge bar setting where an attractive mature man and woman lean in intimately over old fashioned drinks, candle light reflections, sultry moody atmosphere" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBYlWkBz-ZWbKiJL7moePbLtfifAItsoINklUMBLw69FWAzSKhI9TDTm4XBMZuFc3gMjDcKAaLVVMc9Yw6XDrn7IMqaPU_MAiIG4DL3clpa95nzHaLe0qpFhAZS1ZCetBc3G3fbjCcKoKQAWnQOVM8OBYEXmN5vukkF4fWXtCWL5aicxALEW6Rmgs_w_rj4hbhsZuOaOy6DlN5vgHRirhT9sSDoFY-2xkwzpKCX65GwodsEUGclwdwP"/>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-inverse-surface/80 backdrop-blur-md text-surface-container-lowest font-label-sm text-label-sm font-semibold">
+            Late Night Magnetism
+          </span>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Speakeasy Chemistry</h3>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1.5 leading-relaxed">
+              Dim cocktail lounges, magnetic eye contact, sovereign agreements, and unashamed sexual self-assurance.
+            </p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-muted-caption font-label-sm text-label-sm">
+<span>Pacing: Electrified</span>
+<span class="font-bold text-primary">Consensual</span>
+</div>
+</div>
+</div>
+<!-- Card 3: Devoted Companionship -->
+<div class="shrink-0 w-72 rounded-lg bg-surface-container-lowest overflow-hidden shadow-sm flex flex-col">
+<div class="relative h-44 w-full bg-surface-dim">
+<img alt="Devoted Companionship in a warm sunlit cafe" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida/AEtjO1XR-DzxA3LbADlMr_AaZBL2e7X_FsEbBgSmAtcdXGuBOfd6WC7pnWe5a1smN-scrXlzuD0LD2F8iqQLeAkctidLNKmiIcl38COU2R73c3ENR0FhIZmyRHPJC_8q5MoR6-h1WctyDci_Ns9IoFkUIVrf5BXoIfRuIJoyXccyHJbFzdyOmffuVv1QM12oHGHhOXoEXoid9tsx92ywOjlLkpCGRMXyMqCbkowourQrhg6Ndm08twExjau9ug"/>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-inverse-surface/80 backdrop-blur-md text-surface-container-lowest font-label-sm text-label-sm font-semibold">
+            Conscious Union
+          </span>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Devoted Companionship</h3>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1.5 leading-relaxed">
+              Quiet depth, peaceful nervous systems, Sunday morning routines, and genuine lifelong co-creation.
+            </p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-muted-caption font-label-sm text-label-sm">
+<span>Intent: Long-Term</span>
+<span class="font-bold text-growth-sage">High Safety</span>
+</div>
+</div>
+</div>
+<!-- Card 4: Sovereign Singles -->
+<div class="shrink-0 w-72 rounded-lg bg-surface-container-lowest overflow-hidden shadow-sm flex flex-col">
+<div class="relative h-44 w-full bg-surface-dim">
+<img class="w-full h-full object-cover" data-alt="Confident charismatic handsome Black man in casual navy jacket smiling warmly outside Parisian cafe table in morning sunlight, urban European street background, natural relaxed portrait" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBshnFpJZXfFV8GDF47deKojQ0M-e83FIerHGYC-OF0IqScPCWR-sj-pSxJ8mXkJxzDfsCgDpLPMg8MrgHCSke4O_Yqq8KfGDDYeIrimIHIZ_VRfJf-Bobm1fVBnVKzPIKihmuDrQBeQII0KnRTHFM1xrhDuPwrnTJHKO6a6HdrjY6gCQTbkvYMyspaSA2N354Hcr5X9dsZNdjNc2cQvw9fZB14FAoaM2JFfsnJnQkfkRimBT6wjwJt"/>
+<span class="absolute top-3 left-3 px-2.5 py-1 rounded-full bg-inverse-surface/80 backdrop-blur-md text-surface-container-lowest font-label-sm text-label-sm font-semibold">
+            Independent Creators
+          </span>
+</div>
+<div class="p-4 flex flex-col flex-1 justify-between">
+<div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">Clear Terms. Zero Games.</h3>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1.5 leading-relaxed">
+              High-achieving founders and creative sovereign individuals with no time for ambiguous breadcrumbs.
+            </p>
+</div>
+<div class="mt-4 pt-3 flex items-center justify-between text-muted-caption font-label-sm text-label-sm">
+<span>Clarity: 100%</span>
+<span class="font-bold text-secondary-container">Direct</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. MOBILE INTERACTIVE DILEMMA SIMULATOR -->
+<section class="w-full px-margin py-8">
+<div class="text-center mb-5">
+<span class="font-label-sm text-label-sm text-secondary uppercase tracking-wider font-bold">Relational IQ Test</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface mt-1">
+        Swipe Past the Drama.<br/>Calibrate Your Instincts.
+      </h2>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1">
+        Test your emotional reflexes on real dating flashpoints.
+      </p>
+</div>
+<!-- Interactive Dilemma Card -->
+<div class="w-full rounded-lg bg-surface-container-lowest p-5 shadow-lg transition-all duration-300" id="dilemma-card">
+<div class="flex items-center justify-between pb-3">
+<span class="px-2.5 py-0.5 rounded-full bg-dilemma-rose text-secondary font-label-sm text-label-sm font-bold">Scenario #04</span>
+<span class="font-label-sm text-label-sm text-muted-caption">Communication Pacing</span>
+</div>
+<div class="my-3">
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">The 14-Hour Text Silence After a Vulnerable Conversation</h3>
+<p class="font-body-sm text-body-sm text-muted-caption mt-2">
+          You shared an emotional boundary on date three. They read it immediately but took over 14 hours to respond with a simple sentence.
+        </p>
+</div>
+<!-- Comparison Blocks -->
+<div class="space-y-2.5 my-4">
+<!-- Reactive loop -->
+<div class="p-3 rounded bg-surface-container-low text-on-surface">
+<div class="flex items-center gap-1.5 text-secondary font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">history_toggle_off</span>
+<span>Reactive Loop</span>
+</div>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1">
+            Spiral into catastrophizing, post a cryptic Instagram story, or ice them out for exactly 14 hours in revenge.
+          </p>
+</div>
+<!-- Mature shift -->
+<div class="p-3 rounded bg-growth-sage-soft text-on-surface">
+<div class="flex items-center gap-1.5 text-growth-sage font-label-sm text-label-sm font-bold">
+<span class="material-symbols-outlined text-[16px]">self_improvement</span>
+<span>Mature Conduct</span>
+</div>
+<p class="font-body-sm text-body-sm text-growth-sage mt-1">
+            Self-regulate the somatic spike: “I noticed a long gap after I shared something personal. Just checking in on where your head is at?”
+          </p>
+</div>
+</div>
+<!-- Action Triggers -->
+<div class="flex items-center justify-between gap-2 pt-2">
+<button class="flex-1 h-12 rounded-full bg-dilemma-rose text-secondary font-label-md text-label-md font-bold flex items-center justify-center gap-1 active:scale-95 transition-all" id="btn-red-flag">
+<span class="material-symbols-outlined text-[18px]">flag</span>
+<span>Red Flag</span>
+</button>
+<button class="w-12 h-12 rounded-full bg-surface-container text-on-surface flex items-center justify-center active:rotate-180 transition-all" id="btn-reset">
+<span class="material-symbols-outlined text-[20px]">refresh</span>
+</button>
+<button class="flex-1 h-12 rounded-full bg-growth-sage text-surface-container-lowest font-label-md text-label-md font-bold flex items-center justify-center gap-1 active:scale-95 transition-all" id="btn-growth">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+<span>Growth Space</span>
+</button>
+</div>
+<!-- Feedback Banner (Hidden by default, toggled via JS) -->
+<div class="hidden mt-3 p-2.5 rounded bg-primary-fixed text-on-primary-fixed text-center font-label-sm text-label-sm font-bold animate-fade-in" id="dilemma-feedback">
+        Verdict Logged! Calibrating your matching profile...
+      </div>
+<!-- Telemetry Counters -->
+<div class="flex items-center justify-center gap-6 mt-4 pt-3 text-muted-caption font-label-sm text-label-sm">
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-secondary"></span>
+<strong class="text-on-surface" id="flag-count">14</strong> Red Flags Called
+        </span>
+<span class="flex items-center gap-1">
+<span class="w-2 h-2 rounded-full bg-growth-sage"></span>
+<strong class="text-on-surface" id="growth-count">38</strong> Growth Chosen
+        </span>
+</div>
+</div>
+</section>
+<!-- 6. DISCOVER YOUR RELATIONAL SUPERPOWER (Mobile Quiz Card) -->
+<section class="w-full px-margin py-6 bg-surface-cream">
+<div class="w-full rounded-lg bg-surface-container-lowest p-5 shadow-sm">
+<div class="flex items-center justify-between mb-3">
+<span class="px-2.5 py-0.5 rounded-full bg-primary-container/20 text-on-primary-container font-label-sm text-label-sm font-bold">
+          Quick Diagnostic
+        </span>
+<span class="font-label-sm text-label-sm text-muted-caption">Question 2 of 4</span>
+</div>
+<h3 class="font-headline-sm text-headline-sm font-bold text-on-surface">
+        When unexpected friction surfaces over dinner, your automatic instinct is to:
+      </h3>
+<div class="space-y-2 mt-4" id="quiz-options">
+<label class="flex items-center gap-3 p-3.5 rounded-lg bg-surface-container-low cursor-pointer transition-all active:scale-98">
+<input class="w-4 h-4 text-secondary-container focus:ring-0" name="superpower" type="radio" value="regulated-pause"/>
+<div class="min-w-0">
+<span class="font-label-md text-label-md font-bold block text-on-surface">Regulated Pause</span>
+<span class="font-body-sm text-body-sm text-muted-caption block truncate">Take a sip of water, slow breathing down, and request five minutes.</span>
+</div>
+</label>
+<label class="flex items-center gap-3 p-3.5 rounded-lg bg-surface-container-low cursor-pointer transition-all active:scale-98">
+<input checked="" class="w-4 h-4 text-secondary-container focus:ring-0" name="superpower" type="radio" value="direct-articulation"/>
+<div class="min-w-0">
+<span class="font-label-md text-label-md font-bold block text-on-surface">Direct Articulation</span>
+<span class="font-body-sm text-body-sm text-muted-caption block truncate">Name the elephant kindly: “I feel an edge here. Can we unpack it?”</span>
+</div>
+</label>
+<label class="flex items-center gap-3 p-3.5 rounded-lg bg-surface-container-low cursor-pointer transition-all active:scale-98">
+<input class="w-4 h-4 text-secondary-container focus:ring-0" name="superpower" type="radio" value="somatic-attunement"/>
+<div class="min-w-0">
+<span class="font-label-md text-label-md font-bold block text-on-surface">Somatic Attunement</span>
+<span class="font-body-sm text-body-sm text-muted-caption block truncate">Drop into posture and eye contact to re-establish physical safety.</span>
+</div>
+</label>
+<label class="flex items-center gap-3 p-3.5 rounded-lg bg-surface-container-low cursor-pointer transition-all active:scale-98">
+<input class="w-4 h-4 text-secondary-container focus:ring-0" name="superpower" type="radio" value="structural-clarity"/>
+<div class="min-w-0">
+<span class="font-label-md text-label-md font-bold block text-on-surface">Structural Clarity</span>
+<span class="font-body-sm text-body-sm text-muted-caption block truncate">Clarify assumptions and redefine the agreement in real-time.</span>
+</div>
+</label>
+</div>
+<button class="w-full mt-5 h-12 rounded-full bg-on-surface text-surface-container-lowest font-label-md text-label-md font-bold shadow transition-transform active:scale-95 flex items-center justify-center gap-1.5" type="button">
+<span>Reveal My Chemistry Profile</span>
+<span class="material-symbols-outlined text-[18px]">psychology</span>
+</button>
+</div>
+</section>
+<!-- 7. SWIPE CULTURE VS. MATURE MIND -->
+<section class="w-full px-margin py-8">
+<div class="text-center mb-6">
+<span class="font-label-sm text-label-sm text-muted-caption uppercase tracking-wider font-bold">The Modern Contrast</span>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface mt-1">
+        Swipe Fatigue vs. Just Mature Mind
+      </h2>
+</div>
+<div class="space-y-3">
+<!-- Card 1 -->
+<div class="rounded-lg bg-surface-container-lowest p-4 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Conflict &amp; Tension</span>
+<span class="material-symbols-outlined text-muted-caption text-[18px]">sync_alt</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-left">
+<div class="p-2.5 rounded bg-surface-container-low">
+<span class="font-label-sm text-[10px] text-secondary uppercase font-bold block">Typical Dating</span>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1">Passive silence, scorekeeping, and abrupt ghosting.</p>
+</div>
+<div class="p-2.5 rounded bg-growth-sage-soft">
+<span class="font-label-sm text-[10px] text-growth-sage uppercase font-bold block">Just Mature Mind</span>
+<p class="font-body-sm text-body-sm text-on-surface mt-1 font-medium">Same-day de-escalation and intentional repair protocols.</p>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="rounded-lg bg-surface-container-lowest p-4 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Intentions &amp; Pace</span>
+<span class="material-symbols-outlined text-muted-caption text-[18px]">sync_alt</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-left">
+<div class="p-2.5 rounded bg-surface-container-low">
+<span class="font-label-sm text-[10px] text-secondary uppercase font-bold block">Typical Dating</span>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1">Ambiguous situationships and breadcrumb texting.</p>
+</div>
+<div class="p-2.5 rounded bg-primary-fixed/30">
+<span class="font-label-sm text-[10px] text-primary uppercase font-bold block">Just Mature Mind</span>
+<p class="font-body-sm text-body-sm text-on-surface mt-1 font-medium">Zero-ambiguity intent tags declared on Day 1.</p>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="rounded-lg bg-surface-container-lowest p-4 shadow-sm">
+<div class="flex items-center justify-between mb-2">
+<span class="font-label-md text-label-md font-bold text-on-surface">Attraction Calibration</span>
+<span class="material-symbols-outlined text-muted-caption text-[18px]">sync_alt</span>
+</div>
+<div class="grid grid-cols-2 gap-2 text-left">
+<div class="p-2.5 rounded bg-surface-container-low">
+<span class="font-label-sm text-[10px] text-secondary uppercase font-bold block">Typical Dating</span>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1">Love-bombing followed by emotional withdrawal.</p>
+</div>
+<div class="p-2.5 rounded bg-growth-sage-soft">
+<span class="font-label-sm text-[10px] text-growth-sage uppercase font-bold block">Just Mature Mind</span>
+<p class="font-body-sm text-body-sm text-on-surface mt-1 font-medium">Sustained warmth, somatic chemistry, and clear pacing.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. CURATED APPLICATION FORM -->
+<section class="w-full px-margin py-8 bg-surface-container" id="apply">
+<div class="w-full rounded-lg bg-surface-container-lowest p-6 shadow-md">
+<div class="flex items-center gap-2 mb-2">
+<span class="w-2.5 h-2.5 rounded-full bg-secondary-container"></span>
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-muted-caption font-bold">Private Admission</span>
+</div>
+<h2 class="font-headline-md text-headline-md font-bold text-on-surface">
+        Apply for Curated Matchmaking
+      </h2>
+<p class="font-body-sm text-body-sm text-muted-caption mt-1 mb-5">
+        Join our verified cohort of self-aware daters and discerning founders.
+      </p>
+<form class="space-y-3.5" onsubmit="event.preventDefault(); document.getElementById('apply-success').classList.remove('hidden');">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1 font-semibold">Full Name</label>
+<input class="w-full h-12 px-4 rounded bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-cream" placeholder="Elena Rostova" required="" type="text"/>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1 font-semibold">Email Address</label>
+<input class="w-full h-12 px-4 rounded bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none focus:bg-surface-cream" placeholder="elena@studio.com" required="" type="email"/>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1 font-semibold">Primary Intent</label>
+<select class="w-full h-12 px-3 rounded bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none">
+<option>✨ Conscious Union</option>
+<option>⚡ Short-term Fun</option>
+<option>🔥 High Chemistry NSA</option>
+<option>🌱 Sovereign Dating</option>
+</select>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1 font-semibold">Attachment Style</label>
+<select class="w-full h-12 px-3 rounded bg-surface-container-low text-on-surface font-body-sm text-body-sm focus:outline-none">
+<option>Secure</option>
+<option>Anxious-Healing</option>
+<option>Avoidant-Aware</option>
+<option>Calibrated</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block font-label-sm text-label-sm text-on-surface mb-1 font-semibold">Your Age Bracket</label>
+<div class="grid grid-cols-4 gap-2">
+<button class="h-10 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm active:bg-on-surface active:text-surface-container-lowest" type="button">25-32</button>
+<button class="h-10 rounded bg-on-surface text-surface-container-lowest font-label-sm text-label-sm font-bold" type="button">33-40</button>
+<button class="h-10 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm active:bg-on-surface active:text-surface-container-lowest" type="button">41-49</button>
+<button class="h-10 rounded bg-surface-container-low text-on-surface font-label-sm text-label-sm active:bg-on-surface active:text-surface-container-lowest" type="button">50+</button>
+</div>
+</div>
+<button class="w-full h-13 min-h-[52px] mt-2 rounded-full bg-secondary-container text-on-secondary font-label-lg text-label-lg font-bold shadow-md active:scale-98 transition-all flex items-center justify-center gap-2" type="submit">
+<span>Apply for Matchmaking Circle</span>
+<span class="material-symbols-outlined text-[18px]">verified_user</span>
+</button>
+<div class="hidden p-3 rounded bg-growth-sage-soft text-growth-sage font-label-md text-label-md text-center" id="apply-success">
+          ✓ Application received! We review each profile within 24 hours.
+        </div>
+<div class="flex items-center justify-center gap-2 text-center pt-2">
+<span class="material-symbols-outlined text-growth-sage text-[15px]">lock</span>
+<span class="font-label-sm text-[11px] text-muted-caption">100% Identity &amp; EQ Verified · Zero Bots · Strict Discretion</span>
+</div>
+</form>
+</div>
+</section>
+<!-- 9. MOBILE COMPACT FOOTER -->
+<footer class="w-full px-margin py-8 bg-surface text-center flex flex-col items-center">
+<div class="mb-4">
+<img alt="Just Mature Mind Logo" class="h-8 w-auto object-contain mx-auto" src="https://lh3.googleusercontent.com/aida/AEtjO1W5EJiErDKN7E-r9vcv5ZemQ--uS1FXDtWxnQoqPpaKfZQiGl9iEDizTI0Gwz48FN4vxvc-CIWxqpPQHI2Og_U2bx8H9u7H3G8qI6hqy4H4gl4iIV1PkHc-Am3OwtqcX2-38b3ZA_0S7NHl1p5fMmtA1HbQXWarVOI7Si6eGMi55ue9A8zP9QFR0L0YcpmJqqoq3n0XLLfZv8PsuEJ28FykvQ65GfWgWvOLlLxizBdRQVrG4gdqkoefmA"/>
+</div>
+<p class="font-body-sm text-body-sm text-muted-caption max-w-xs mb-5">
+      The conscious standard for modern romance. Electric passion anchored in sovereign respect.
+    </p>
+<div class="flex flex-wrap items-center justify-center gap-4 text-muted-caption font-label-md text-label-md mb-6">
+<a class="hover:text-on-surface" href="#">Zero Ghosting Charter</a>
+<span>·</span>
+<a class="hover:text-on-surface" href="#">EQ Screening</a>
+<span>·</span>
+<a class="hover:text-on-surface" href="#">Terms</a>
+<span>·</span>
+<a class="hover:text-on-surface" href="#">Privacy</a>
+</div>
+<p class="font-label-sm text-[11px] text-muted-caption">
+      © 2025 Just Mature Mind Inc. All rights reserved.
+    </p>
+</footer>
+</div>
+<!-- Inline Interactive Micro-Interactions -->
+<script>
+  (function() {
+    const redFlagBtn = document.getElementById('btn-red-flag');
+    const growthBtn = document.getElementById('btn-growth');
+    const resetBtn = document.getElementById('btn-reset');
+    const feedback = document.getElementById('dilemma-feedback');
+    const flagCount = document.getElementById('flag-count');
+    const growthCount = document.getElementById('growth-count');
+    const card = document.getElementById('dilemma-card');
+
+    if (redFlagBtn && growthBtn) {
+      redFlagBtn.addEventListener('click', () => {
+        let count = parseInt(flagCount.innerText);
+        flagCount.innerText = count + 1;
+        feedback.innerText = "Logged as Red Flag. Prioritizing candidates with responsive pacing.";
+        feedback.classList.remove('hidden');
+        card.classList.add('bg-dilemma-rose/40');
+      });
+
+      growthBtn.addEventListener('click', () => {
+        let count = parseInt(growthCount.innerText);
+        growthCount.innerText = count + 1;
+        feedback.innerText = "Logged as Growth Opportunity! High EQ calibration acknowledged.";
+        feedback.classList.remove('hidden');
+        card.classList.add('bg-growth-sage-soft/40');
+      });
+
+      resetBtn.addEventListener('click', () => {
+        card.classList.remove('bg-dilemma-rose/40', 'bg-growth-sage-soft/40');
+        feedback.classList.add('hidden');
+      });
+    }
+  })();
+</script></main><nav class="fixed bottom-0 w-full z-50 pb-safe bg-surface/90 backdrop-blur-xl shadow-[0_-2px_12px_rgba(0,0,0,0.04)]" data-active-classes="text-secondary"><div class="h-16 px-space-sm flex items-center justify-around"><a aria-current="page" class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] transition-colors text-secondary" data-path="discover-spark" href="#"><span class="material-symbols-outlined text-[24px]">local_fire_department</span><span class="font-label-sm text-[10px] leading-tight">Spark</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-muted-caption transition-colors hover:text-on-surface" data-path="dilemma-deck" href="#"><span class="material-symbols-outlined text-[24px]">style</span><span class="font-label-sm text-[10px] leading-tight">Dilemma</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-muted-caption transition-colors hover:text-on-surface" data-path="cohort-matches" href="#"><span class="material-symbols-outlined text-[24px]">diversity_1</span><span class="font-label-sm text-[10px] leading-tight">Cohorts</span></a><a class="flex flex-col items-center justify-center gap-0.5 min-w-[56px] min-h-[44px] text-muted-caption transition-colors hover:text-on-surface" data-path="superpower-quiz" href="#"><span class="material-symbols-outlined text-[24px]">auto_awesome</span><span class="font-label-sm text-[10px] leading-tight">Quiz</span></a></div></nav></body></html>

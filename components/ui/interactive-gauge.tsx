@@ -19,9 +19,8 @@ export function InteractiveGauge({
   const [animatedScore, setAnimatedScore] = useState(0);
 
   useEffect(() => {
-    // Smooth number animation
     let start = 0;
-    const duration = 1200;
+    const duration = 1000;
     const stepTime = 20;
     const increment = score / (duration / stepTime);
 
@@ -38,7 +37,7 @@ export function InteractiveGauge({
     return () => clearInterval(timer);
   }, [score]);
 
-  const strokeWidth = 14;
+  const strokeWidth = 12;
   const radius = (size - strokeWidth) / 2;
   const circumference = 2 * Math.PI * radius;
   const arcLength = circumference * 0.75; // 270 degree gauge
@@ -52,13 +51,13 @@ export function InteractiveGauge({
         viewBox={`0 0 ${size} ${size}`}
         className="transform -rotate-[135deg]"
       >
-        {/* Background Track */}
+        {/* Dark Background Track */}
         <circle
           cx={size / 2}
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="#E8EFEA"
+          stroke="#2E2433"
           strokeWidth={strokeWidth}
           strokeDasharray={`${arcLength} ${circumference}`}
           strokeLinecap="round"
@@ -66,10 +65,9 @@ export function InteractiveGauge({
 
         {/* Animated Score Gradient Track */}
         <defs>
-          <linearGradient id="gaugeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#2A4B43" />
-            <stop offset="60%" stopColor="#386358" />
-            <stop offset="100%" stopColor="#FF5A5F" />
+          <linearGradient id="darkGaugeGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stopColor="#FF5A7A" />
+            <stop offset="100%" stopColor="#FFB36B" />
           </linearGradient>
         </defs>
 
@@ -78,22 +76,22 @@ export function InteractiveGauge({
           cy={size / 2}
           r={radius}
           fill="none"
-          stroke="url(#gaugeGradient)"
+          stroke="url(#darkGaugeGradient)"
           strokeWidth={strokeWidth}
           strokeDasharray={`${arcLength} ${circumference}`}
           initial={{ strokeDashoffset: arcLength }}
           animate={{ strokeDashoffset }}
-          transition={{ duration: 1.4, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
           strokeLinecap="round"
         />
       </svg>
 
       {/* Central Score Display */}
       <div className="absolute inset-0 flex flex-col items-center justify-center text-center">
-        <span className="text-3xl font-extrabold text-[#121316] tracking-tight">
+        <span className="text-3xl font-extrabold text-[#F5EFE8] tracking-tight font-mono">
           {animatedScore}%
         </span>
-        <span className="text-xs font-semibold text-[#2A4B43] tracking-wide uppercase">
+        <span className="text-[11px] font-bold text-[#FFB36B] tracking-wider uppercase mt-0.5">
           {label}
         </span>
       </div>

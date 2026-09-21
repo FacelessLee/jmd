@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Plus_Jakarta_Sans, Playfair_Display } from "next/font/google";
 import "./globals.css";
 import { SmoothScrollProvider } from "@/components/providers/smooth-scroll";
+import { MouseAmbientGlow } from "@/components/ui/mouse-ambient-glow";
 
 const sansFont = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -16,17 +17,17 @@ const serifFont = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Just Mature Mind | Empowering Healthy Relationships & Mutual Arrangements",
+  title: "Just Mature Mind — Desire, with standards",
   description:
-    "The platform for emotional clarity, conscious communication, and resilient partnerships. Step out of superficial swipe culture into genuine, mature connection.",
+    "Hookups to marriage — match with people who say what they want and mean what they say. Emotional maturity is the sexiest thing in the room.",
   metadataBase: new URL("https://justmaturemind.com"),
   alternates: {
     canonical: "https://justmaturemind.com",
   },
   openGraph: {
-    title: "Just Mature Mind | Beyond Superficial Dating",
+    title: "Just Mature Mind — Desire, with standards",
     description:
-      "Empowering intentional, mature, and emotionally intelligent relationships. Explore our interactive Dilemma Deck and Relational Superpower assessment.",
+      "Hookups to marriage — match with people who say what they want and mean what they say. Emotional maturity is the sexiest thing in the room.",
     url: "https://justmaturemind.com",
     siteName: "Just Mature Mind",
     type: "website",
@@ -34,9 +35,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Just Mature Mind | Beyond Superficial Dating",
+    title: "Just Mature Mind — Desire, with standards",
     description:
-      "Dating got complicated. Maturity makes it simple. Empowering healthy relationships and mutual arrangements.",
+      "Whatever you're here for — clarity and conduct are the sexiest things in the room. Match with emotional maturity.",
   },
   icons: {
     icon: "/favicon.ico",
@@ -49,9 +50,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${sansFont.variable} ${serifFont.variable}`}>
-      <body className="font-sans antialiased bg-[#FBF9F5] text-[#121316] selection:bg-[#FF5A5F] selection:text-white">
+    <html lang="en" className={`${sansFont.variable} ${serifFont.variable} dark`}>
+      <body className="font-sans antialiased bg-[#100C12] text-[#F5EFE8] selection:bg-[#FF5A7A] selection:text-[#100C12]">
         <SmoothScrollProvider>
+          <MouseAmbientGlow />
           {children}
         </SmoothScrollProvider>
       </body>

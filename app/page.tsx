@@ -1,37 +1,37 @@
 import { Navbar } from "@/components/landing/navbar";
 import { Hero } from "@/components/landing/hero";
-import { DilemmaDeckSection } from "@/components/landing/dilemma-deck-section";
-import { MaturityMetricSection } from "@/components/landing/maturity-metric-section";
 import { CorePillarsBento } from "@/components/landing/core-pillars-bento";
+import { MaturityMetricSection } from "@/components/landing/maturity-metric-section";
+import { TestimonialsSection } from "@/components/landing/testimonials-section";
 import { ComparisonCarousel } from "@/components/landing/comparison-carousel";
 import { LeadCaptureSection } from "@/components/landing/lead-capture-section";
 import { Footer } from "@/components/landing/footer";
 
 export default function Home() {
   return (
-    <main className="min-h-screen flex flex-col bg-[#FBF9F5] selection:bg-[#FF5A5F] selection:text-white">
-      {/* Sticky Dynamic Navbar */}
+    <main className="min-h-screen flex flex-col bg-[#100C12] text-[#F5EFE8] selection:bg-[#FF5A7A] selection:text-[#100C12]">
+      {/* Dynamic Sticky Navbar with Top Scroll Progress */}
       <Navbar />
 
-      {/* Hero Section with 3D Card Stack Preview and Magnetic CTAs */}
+      {/* Hero Section: 6-Intent Segmentation + Interactive Swipe Deck Above the Fold */}
       <Hero />
 
-      {/* The Dilemma Deck: Bumble / Tinder Card Swipe Mechanics */}
-      <DilemmaDeckSection />
+      {/* The Four Foundations: Bento Grid with Mouse-Tracking Spotlight Borders */}
+      <CorePillarsBento />
 
-      {/* The Maturity Metric: Gamified 3-Prompt Superpower Assessment */}
+      {/* The Maturity Metric: Interactive Gauge & Superpower Assessment */}
       <MaturityMetricSection />
 
-      {/* Core Foundations: LazyInterface Mouse-Tracking Bento Grid */}
-      <CorePillarsBento />
+      {/* Real Outcomes: Real-Style Testimonials Across Diverse Intents */}
+      <TestimonialsSection />
 
       {/* Red Flag vs. Growth Space Horizontal Momentum Carousel */}
       <ComparisonCarousel />
 
-      {/* High-Conversion Lead Capture & Circle Membership */}
+      {/* High-Conversion Lead Capture Tailored to Selected Intent */}
       <LeadCaptureSection />
 
-      {/* Editorial Obsidian Footer */}
+      {/* Dark Aubergine Footer */}
       <Footer />
     </main>
   );
